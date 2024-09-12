@@ -22,9 +22,9 @@ const BgLayout = async ({ children }) => {
                 <SideDrawer categories={categories}/>
               </div>
               
-              <Link href={'/blog'} className="text-center text-white text-2xl font-semibold cursor-pointer hover:text-red-400">Ravi R.</Link>
+              <Link href={'/'} className="text-center text-white text-2xl font-semibold cursor-pointer hover:text-red-400">Ravi R.</Link>
             </div>
-            <Link href={`/`} target='_blank' className='flex items-center gap-2 hover:text-red-400 text-white'>
+            <Link href={`https://ravi.rainaspace.com`} target='_blank' className='flex items-center gap-2 hover:text-red-400 text-white'>
               <RecentActorsIcon className='w-8 h-8' />
               <p className='text-base font-medium md:flex hidden'>Portfolio</p>
             </Link>

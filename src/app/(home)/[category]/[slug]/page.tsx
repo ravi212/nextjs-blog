@@ -9,7 +9,7 @@ const Page = ({
     params: { slug: string, category: string };
     searchParams?: { [key: string]: string | string[] | undefined };
   }) => {
-    console.log(params)
+
   return (
     <div>
       <Post slug={params?.slug}/>
