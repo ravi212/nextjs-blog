@@ -13,7 +13,7 @@ const Page = async ({
   const data = await getAllPosts();
   const posts: any = data?.posts;
   
-  revalidatePath('/(home)');
+  revalidatePath('/(home)', 'page');
 
   if (!posts) {
     return

@@ -13,7 +13,7 @@ const Post = async ({ slug }: { slug: string }) => {
   const data = await getPostBySlug(slug);
   const post: PostType | any = data?.post;
 
-  revalidatePath(`/(home)/category/[category]/[slug]`);
+  revalidatePath(`/(home)/category/[category]/[slug]`, 'page');
 
   if (!post) {
     return <div>Post not found</div>;
@@ -34,7 +34,7 @@ const Post = async ({ slug }: { slug: string }) => {
         <div className="relative w-[100%] min-h-[250px] overflow-hidden md:rounded-t-lg">
           <Image
             alt="blog-img"
-            layout="fill"
+            fill
             objectFit="cover"
             className="absolute inset-0"
             src={post?.imageUrl}

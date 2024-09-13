@@ -24,7 +24,7 @@ const BlogPost = ({
       <div className="relative w-[100%] min-h-[250px] overflow-hidden rounded-t-lg">
         <Image
           alt="blog-img"
-          layout="fill"
+          fill
           objectFit="cover"
           className="absolute inset-0"
           src={imageUrl}

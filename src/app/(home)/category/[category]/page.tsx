@@ -15,7 +15,7 @@ const Page = async ({
   const data = await getAllPosts(category);
   const posts: any = data?.posts;
 
-  revalidatePath(`/(home)/category/[category]`);
+  revalidatePath(`/(home)/category/[category]`, 'page');
 
   if (!posts) {
     return
