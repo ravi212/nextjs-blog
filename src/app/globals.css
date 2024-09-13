@@ -71,6 +71,7 @@ body * {
 
 .se-image-container{
   width: 100% !important;
+  overflow: hidden;
 }
 
 .se-image-container > figure{

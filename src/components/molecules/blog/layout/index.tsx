@@ -35,7 +35,7 @@ const BgLayout = async ({ children }) => {
           </div>
    
         </div>
-        <div className="flex flex-row md:p-6 p-4 gap-6 w-full mx-auto md:w-[100%] lg:w-[85%] xl:w-[80%]">
+        <div className="flex flex-row md:p-6 p-0 gap-6 w-full mx-auto md:w-[100%] lg:w-[85%] xl:w-[80%]">
           <div className="w-[100%] container mx-auto">{children}</div>
           <div className='w-[30%] md:flex hidden'>
             <Suspense>
