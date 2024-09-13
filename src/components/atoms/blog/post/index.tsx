@@ -28,6 +28,7 @@ const BlogPost = ({
           objectFit="cover"
           className="absolute inset-0"
           src={imageUrl}
+          priority={true}
         />
       </div>
       <div className="md:p-6 p-4">
