@@ -18,7 +18,7 @@ const BlogPost = ({
 }) => {
   return (
     <Link
-      href={{ pathname: `/${category?.slug}/${slug}`}}
+      href={{ pathname: `/category/${category?.slug}/${slug}`}}
       className="bg-white rounded-lg drop-shadow-2xl mb-6 flex flex-col cursor-pointer"
     >
       <div className="relative w-[100%] min-h-[250px] overflow-hidden rounded-t-lg">

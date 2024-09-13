@@ -56,7 +56,7 @@ export const getAllCategories = async () => {
         const categories = await Category.find({}, '_id title slug createdAt')
 
         if (categories) {
-            return { success:'ok', categories }
+            return JSON.parse(JSON.stringify({ success:'ok', categories }))
         } 
     
         return {error: "Not Found!"}
@@ -74,7 +74,7 @@ export const getCategoryById = async (_id: string | undefined) => {
         const category = await Category.findOne({_id})
 
         if (category) {
-            return {success: 'ok', category}
+            return JSON.parse(JSON.stringify({success: 'ok', category}))
         } 
     
         return {error: "Not Found!"}
@@ -93,7 +93,7 @@ export const getCategoryBySlug = async (slug: string) => {
         const category = await Category.findOne({slug})
 
         if (category) {
-            return {success: 'ok', category}
+            return JSON.parse(JSON.stringify({success: 'ok', category}))
         } 
     
         return {error: "Not Found!"}

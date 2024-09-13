@@ -88,7 +88,7 @@ export const getUserById = async (_id: string | undefined) => {
         const user = await User.findOne({_id})
 
         if (user) {
-            return {success: 'ok', user}
+            return JSON.parse(JSON.stringify({success: 'ok', user}))
         } 
     
         return {error: "Not Found!"}
@@ -107,7 +107,7 @@ export const getUsersByRole = async (role: string) => {
         const users = await User.find({role, isLocked: {$ne: true}})
 
         if (users) {
-            return {success: 'ok', users}
+            return JSON.parse(JSON.stringify({success: 'ok', users}))
         } 
     
         return {error: "Not Found!"}
@@ -125,7 +125,7 @@ export const getAllUsers = async () => {
         const users = await User.find({role: { $ne: UserRole.ADMIN }})
 
         if (users) {
-            return { success:'ok', users }
+            return JSON.parse(JSON.stringify({ success:'ok', users }))
         } 
     
         return {error: "Not Found!"}
@@ -174,7 +174,7 @@ export const logInUser = async (payload: any) => {
         
             if (compareSync(password, user.password)) {
                 user.password = undefined;
-                return {success: 'ok', user: user}
+                return JSON.parse(JSON.stringify({success: 'ok', user: user}))
             } else {
                 return {error: "Password mismatch!" }
             }

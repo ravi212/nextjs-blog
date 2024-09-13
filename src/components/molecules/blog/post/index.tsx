@@ -3,10 +3,15 @@ import { formatDate } from '@/utils/common';
 import Head from 'next/head';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PortraitIcon from '@mui/icons-material/Portrait';
+import { revalidatePath } from 'next/cache';
+
 const Post = async ({slug}: {slug: string}) => {
   
   const data = await getPostBySlug(slug);
   const post: PostType | any = data?.post;
+
+  revalidatePath(`/(home)/category/[category]/[slug]`)
+
 
   if (!post) {
     return <div>Post not found</div>;

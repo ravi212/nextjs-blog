@@ -69,3 +69,15 @@ body * {
 
 }
 
+.se-image-container{
+  width: 100% !important;
+}
+
+.se-image-container > figure{
+  width: 100% !important;
+}
+
+.se-image-container figure img{
+  width: 100% !important;
+  object-fit: cover;
+}

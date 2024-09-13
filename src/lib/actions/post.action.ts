@@ -2,7 +2,8 @@
 
 import connectToDatabase from "@/config/db";
 import Category from "@/models/category.model";
-import Post from "@/models/post.model"
+import Post from "@/models/post.model";
+import "@/models/user.model";
 
 // Create post
 export const createPost = async (payload: PostType) => {
@@ -20,7 +21,7 @@ export const createPost = async (payload: PostType) => {
         const post = await newPost.save();
 
         if (post) {
-            return  {success: 'ok', message: "Post created successfully"}
+            return  JSON.parse(JSON.stringify({success: 'ok', message: "Post created successfully"}))
         } 
     
         return {error: "Error Creating Post!"}
@@ -38,7 +39,7 @@ export const editPost = async (id: string | undefined, payload: PostType) => {
         const post = await Post.findByIdAndUpdate(id, payload);
 
         if (post) {
-            return {success: 'ok', post , message: "Post updated successfully"}
+            return JSON.parse(JSON.stringify({success: 'ok', post , message: "Post updated successfully"}))
         } 
     
         return {error: "Error Updating Post!"}
@@ -61,13 +62,13 @@ export const getAllPosts = async (categorySlug?: string | string[] | undefined) 
         if (categorySlug) {
             const category = await Category.findOne({slug: categorySlug});
 
-            filters = {...{category: category?._id}}
+            filters = {...{category: category._id}}
         } else {
             delete filters.category;
         }
 
         const posts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl").populate("author").populate("category").exec();
-        
+
         if (posts) {
             return JSON.parse(JSON.stringify({ success:'ok', posts }))
         } 
@@ -75,6 +76,7 @@ export const getAllPosts = async (categorySlug?: string | string[] | undefined) 
         return {error: "Not Found!"}
 
     } catch (err) {
+        console.log(err)
         return {error: "Server Error!", err}
     }
 
@@ -84,7 +86,7 @@ export const getAllPosts = async (categorySlug?: string | string[] | undefined) 
 export const toggleFeatured = async (_id: string | undefined) => {
 
     try {
-        
+
         const featuredPost = await Post.find({featured: true});
 
         if (featuredPost.length > 0) {
@@ -97,7 +99,7 @@ export const toggleFeatured = async (_id: string | undefined) => {
         const post = await Post.findOneAndUpdate({ _id }, {featured: !isFeatured});
 
         if (post) {
-            return { success:'ok', message: "Updated Post!" }
+            return JSON.parse(JSON.stringify({ success:'ok', message: "Updated Post!" }))
         }
 
         return {error: "Not Found!"}
@@ -112,7 +114,7 @@ export const toggleFeatured = async (_id: string | undefined) => {
 export const togglePinned = async (_id: string | undefined) => {
 
     try {
-        
+
         const pinnedPost = await Post.find({pinned: true});
 
         if (pinnedPost.length > 0) {
@@ -125,7 +127,7 @@ export const togglePinned = async (_id: string | undefined) => {
         const post = await Post.findOneAndUpdate({ _id }, {pinned: !isPinned});
 
         if (post) {
-            return { success:'ok', message: "Updated Post!" }
+            return JSON.parse(JSON.stringify({ success:'ok', message: "Updated Post!" }))
         }
 
         return {error: "Not Found!"}
@@ -140,10 +142,11 @@ export const togglePinned = async (_id: string | undefined) => {
 export const getPostById = async (_id: string | undefined) => {
 
     try {
+
         const post = await Post.findOne({_id})
 
         if (post) {
-            return {success: 'ok', post}
+            return JSON.parse(JSON.stringify({success: 'ok', post}))
         } 
     
         return {error: "Not Found!"}
@@ -163,7 +166,7 @@ export const getPostBySlug = async (slug: string) => {
         const post = await Post.findOne({slug}).populate("category").populate("author")
 
         if (post) {
-            return {success: 'ok', post}
+            return JSON.parse(JSON.stringify({success: 'ok', post}))
         } 
     
         return {error: "Not Found!"}
@@ -178,10 +181,11 @@ export const getPostBySlug = async (slug: string) => {
 export const deletePost = async (_id: string) => {
 
     try {
+
         const res = await Post.findByIdAndDelete(_id)
 
         if (res) {
-            return {success: 'ok', message: "Post deleted successfully"}
+            return JSON.parse(JSON.stringify({success: 'ok', message: "Post deleted successfully"}))
         } 
     
         return {error: "Error deleting Post!"}

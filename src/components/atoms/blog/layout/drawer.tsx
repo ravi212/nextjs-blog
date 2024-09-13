@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import { Drawer } from 'antd'
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import ListIcon from "@mui/icons-material/List";
 
 const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const searchParams = useSearchParams()
-  const category = searchParams.get('category');
+  const params = useParams()
+  const category = params.category;
   const activeCatId = categories?.find((cat: CategoryType) => cat.slug == category)?._id
 
   return (
@@ -34,10 +34,10 @@ const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
             </div>
 
             <div className='py-6 flex flex-col gap-3 items-center'>
-            <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} href={`/blog`}>All</Link>
+            <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} href={`/`}>All</Link>
               {
                   categories?.map((cat: CategoryType, index: number) => (
-                  <Link className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-medium': ''} text-primaryColor text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/blog?category=${cat.slug}`}>{cat.title}</Link>
+                  <Link onClick={() => setIsOpen(false)} className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-medium': ''} text-primaryColor text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/category/${cat.slug}`}>{cat.title}</Link>
               ))
               }
                
