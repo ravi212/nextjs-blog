@@ -6,7 +6,7 @@ const BlogPost = lazy(() => import('@/components/atoms/blog/post'))
 const Posts = ({posts}: {posts: PostType[]}) => {
 
   return (
-    <div>
+    <div className='flex flex-col md:gap-6'>
       {posts.map(post => (
         <BlogPost
           key={post._id}
@@ -21,6 +21,7 @@ const Posts = ({posts}: {posts: PostType[]}) => {
           author={`${post.author.firstName} ${post.author.lastName}`}
           category={post?.category}
         />
+
       ))}
     </div>
   )

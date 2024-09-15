@@ -31,7 +31,11 @@ const Post = async ({ slug }: { slug: string }) => {
         <meta name="description" content={post.textContent} />
       </Head>
       <div className="bg-white rounded-lg drop-shadow-2xl ">
+
+        {/* header */}
         <div className="relative w-[100%] min-h-[250px] overflow-hidden md:rounded-t-lg">
+          {/* overlay with opacity */}
+          <div className="w-full h-full absolute bg-opacity-50 z-10 bg-black inset-0"></div>
           <Image
             alt="blog-img"
             fill
@@ -40,27 +44,25 @@ const Post = async ({ slug }: { slug: string }) => {
             src={post?.imageUrl}
             priority={true}
           />
-        </div>
-
-        {/* header */}
-        <div className="flex justify-between md:py-6 md:px-6 px-4 items-start py-8">
-          <div className="flex items-center gap-1 py-0">
+          <div className="flex items-center gap-1 p-2 bg-white rounded-lg absolute left-6 bottom-6 z-20">
           <CalendarMonthIcon className="w-5 h-5 text-gray-400" />
             <p className="text-gray-600 text-sm">
               {formatDate(new Date(post.updatedAt))}
             </p>
 
           </div>
-          <div className="flex items-center gap-1 py-0">
+          <div className="flex items-center gap-1 bg-white rounded-lg p-2 absolute right-6 bottom-6 z-20">
           <p className="text-gray-600 text-sm font-medium items-center">
               <TypeSpecimenIcon className="w-5 h-5 text-gray-400" />{" "}
               <span>{`${post.category.title}`}</span>
             </p>
           </div>
+
+
         </div>
 
         {/* title and author */}
-        <div className="flex flex-col items-center justify-center md:p-6 p-4">
+        <div className="flex flex-col items-center justify-center md:p-14 p-10">
           <h2 className="text-gray-700 hover:underline md:text-4xl text-3xl font-medium pb-5">{post.title}</h2>
           <p className="text-gray-600 text-base font-medium items-center">
               <PortraitIcon className="w-6 h-6 text-gray-400" />{" "}

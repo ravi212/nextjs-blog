@@ -17,9 +17,9 @@ const BgLayout = async ({ children }) => {
     <div className='min-h-screen mx-auto w-full'>
       <div className='w-full'>
         <div className="bg-gray-700 shadow-xl p-4">
-          <div className=' w-full mx-auto md:w-[100%] lg:w-[85%] xl:w-[80%] flex justify-between items-center'>
+          <div className=' w-full mx-auto md:w-[100%] lg:w-[98%] xl:w-[78%] flex justify-between items-center'>
             <div className='flex gap-3 items-center'>
-              <div className='md:hidden flex'>
+              <div className='lg:hidden flex'>
                 <Suspense>
                   <SideDrawer categories={categories}/>
                 </Suspense>
@@ -35,9 +35,9 @@ const BgLayout = async ({ children }) => {
           </div>
    
         </div>
-        <div className="flex flex-row md:p-6 p-0 gap-6 w-full mx-auto md:w-[100%] lg:w-[85%] xl:w-[80%]">
-          <div className="w-[100%] container mx-auto">{children}</div>
-          <div className='w-[30%] md:flex hidden'>
+        <div className="flex flex-row md:p-6 p-0 gap-6 w-full mx-auto md:w-[100%] xl:w-[80%]">
+          <div className="w-[100%] container mx-auto mb-4">{children}</div>
+          <div className='w-[30%] lg:flex hidden'>
             <Suspense>
              <Aside categories={categories}/>
             </Suspense>

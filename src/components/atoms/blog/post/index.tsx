@@ -19,13 +19,13 @@ const BlogPost = ({
   return (
     <Link
       href={{ pathname: `/category/${category?.slug}/${slug}`}}
-      className="bg-white rounded-lg drop-shadow-2xl mb-6 flex flex-col cursor-pointer"
+      className="bg-white md:rounded-lg  drop-shadow-2xl flex flex-col cursor-pointer"
     >
-      <div className="relative w-[100%] min-h-[250px] overflow-hidden rounded-t-lg">
+      <div className="relative w-[100%] min-h-[250px] overflow-hidden md:rounded-t-lg">
         <Image
           alt="blog-img"
           fill
-          objectFit="cover"
+          style={{objectFit: "cover"}}
           className="absolute inset-0"
           src={imageUrl}
           priority={true}
