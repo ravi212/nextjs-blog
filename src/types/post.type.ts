@@ -20,3 +20,8 @@ type CategoryType = {
     slug: string;
     createdAt?: any;
 }
+
+type QueryType = {
+    page: number;
+    pageSize: number;
+}

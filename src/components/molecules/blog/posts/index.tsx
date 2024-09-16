@@ -1,9 +1,10 @@
 
+import PostsPagination from '@/components/atoms/blog/pagination'
 import { formatDate } from '@/utils/common'
 import React, { lazy } from 'react'
 const BlogPost = lazy(() => import('@/components/atoms/blog/post'))
 
-const Posts = ({posts}: {posts: PostType[]}) => {
+const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => {
 
   return (
     <div className='flex flex-col md:gap-6'>
@@ -23,6 +24,12 @@ const Posts = ({posts}: {posts: PostType[]}) => {
         />
 
       ))}
+
+      <div className='py-8 w-full flex justify-center'>
+        <PostsPagination totalCount={totalCount} />
+      </div>
+      
+
     </div>
   )
 }

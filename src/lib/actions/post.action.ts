@@ -51,7 +51,18 @@ export const editPost = async (id: string | undefined, payload: PostType) => {
 }
 
 // get list of posts
-export const getAllPosts = async (categorySlug?: string | string[] | undefined) => {
+export const getAllPosts = async (categorySlug?: string | string[] | undefined, query?: any ) => {
+
+    let page = 1;
+    let pageSize = 10;
+
+    if (query) {
+        page = query?.page;
+        pageSize = query?.pageSize
+    }
+
+    const skip = (page - 1) * pageSize;
+    const itemsPerPage = pageSize;
 
     try {
         await connectToDatabase();
@@ -66,11 +77,18 @@ export const getAllPosts = async (categorySlug?: string | string[] | undefined) 
         } else {
             delete filters.category;
         }
+        
+        const posts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl")
+        .populate("author")
+        .populate("category")
+        .skip(skip)
+        .limit(itemsPerPage)
+        .exec();
 
-        const posts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl").populate("author").populate("category").exec();
+        const totalCount = await Post.countDocuments();
 
         if (posts) {
-            return JSON.parse(JSON.stringify({ success:'ok', posts }))
+            return JSON.parse(JSON.stringify({ success:'ok', posts, totalCount }))
         } 
     
         return {error: "Not Found!"}

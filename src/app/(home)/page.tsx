@@ -6,13 +6,17 @@ const Page = async ({
   params,
   searchParams,
 }: {
-  params: { slug: string };
+  params: { category: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
 
-  const data = await getAllPosts();
+  const category = params?.category
+  const queryParams = {page: searchParams?.page, pageSize: searchParams?.pageSize};
+
+  const data = await getAllPosts(category, queryParams);
   const posts: any = data?.posts;
-  
+  const totalCount: number = data?.totalCount;
+
   revalidatePath('/(home)', 'page');
 
   if (!posts) {
@@ -20,7 +24,7 @@ const Page = async ({
   }
 
   return (
-    <Posts posts={posts} />
+    <Posts posts={posts} totalCount={totalCount}/>
   );
 };
 
