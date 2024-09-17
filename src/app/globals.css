@@ -82,3 +82,19 @@ body * {
   width: 100% !important;
   object-fit: cover;
 }
+
+.quill {
+  margin-top: 0 !important;
+}
+
+.ql-container {
+  min-height: 250px;
+}
+
+pre {
+  text-wrap: wrap;
+  background-color:#00050f;
+  padding: 15px;
+  color: white;
+  border-radius: 10px;
+}

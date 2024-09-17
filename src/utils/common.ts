@@ -8,21 +8,23 @@ export function generateSlug(text: string) {
 }
 
 export const htmlToPlainText = (html: string) => {
-  // Replace <br> tags with newlines
-  const htmlString = html.replace(/<br\s*\/?>/gi, "\n");
+    // Extract the content inside <p> tags
+    let paragraphs = html.match(/<p[^>]*>(.*?)<\/p>/gi);
+    
+    if (!paragraphs) {
+        return ''; // Return empty string if no paragraphs are found
+    }
+    
+    // Remove all HTML tags from the content inside <p> tags and join paragraphs with newlines
+    let text = paragraphs
+        .map(p => p.replace(/<\/?p[^>]*>/gi, '')) // Remove <p> tags
+        .map(p => p.replace(/<[^>]+>/g, '')) // Remove any remaining HTML tags
+        .join('\n'); // Join paragraphs with newline
 
-  // Regex to match <p> tags and their content
-  const regex = /<p[^>]*>(.*?)<\/p>/gi;
-  let match;
-  let result = [];
+    // Replace multiple newlines with a single space
+    text = text.replace(/\n+/g, ' ').trim(); // Replace newlines with a single space and trim extra spaces
 
-  // Execute regex and extract text content
-  while ((match = regex.exec(htmlString)) !== null) {
-    //@ts-ignore
-    result.push(match[1]);
-  }
-
-  return result.join("\n");
+    return text;
 };
 
 export function formatDate(dateString: any) {

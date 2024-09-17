@@ -1,17 +1,11 @@
 "use client";
 import { generateSlug } from "@/utils/common";
-import { Input, Select } from "antd";
+import { Input } from "antd";
 import React, { useEffect, useState } from "react";
-import SunEditor from "suneditor-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "suneditor/dist/css/suneditor.min.css";
 import Spinner from "@/components/atoms/common/Spinner";
-import { upload } from "@/lib/actions/common.action";
-import Image from "next/image";
-import { redirect } from "next/navigation";
 import { createCategory, editCategory, getCategoryById } from "@/lib/actions/category.action";
-const { Option } = Select;
 
 // Validation schema with Yup
 const validationSchema = Yup.object({

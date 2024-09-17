@@ -62,8 +62,8 @@ const Post = async ({ slug }: { slug: string }) => {
         </div>
 
         {/* title and author */}
-        <div className="flex flex-col items-center justify-center md:p-14 p-10">
-          <h2 className="text-gray-700 hover:underline md:text-4xl text-3xl font-medium pb-5">{post.title}</h2>
+        <div className="flex flex-col items-center justify-center py-10 ">
+          <h2 className="text-gray-700 md:text-4xl text-3xl font-medium pb-5">{post.title}</h2>
           <p className="text-gray-600 text-base font-medium items-center">
               <PortraitIcon className="w-6 h-6 text-gray-400" />{" "}
               <span>{`${post.author.firstName} ${post.author.lastName}`}</span>

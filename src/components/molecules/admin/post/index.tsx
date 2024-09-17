@@ -2,15 +2,14 @@
 import { createPost, editPost, getPostById } from "@/lib/actions/post.action";
 import { generateSlug, htmlToPlainText } from "@/utils/common";
 import { Input, Select } from "antd";
-import React, { useEffect, useState } from "react";
-import SunEditor from "suneditor-react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "suneditor/dist/css/suneditor.min.css";
 import Spinner from "@/components/atoms/common/Spinner";
 import { upload } from "@/lib/actions/common.action";
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import Editor from "@/components/atoms/admin/editor";
 const { Option } = Select;
 
 // Validation schema with Yup
@@ -141,9 +140,9 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
   };
 
   const handleEditorChange = (value) => {
-    formik.setFieldValue("htmlContent", value)
-    const plainText = htmlToPlainText(value).substring(0, 300)
-    formik.setFieldValue("textContent", plainText)
+    formik.setFieldValue("htmlContent", value);
+    const plainText = htmlToPlainText(value).substring(0, 300);
+    formik.setFieldValue("textContent", plainText);
   }
 
 
@@ -279,7 +278,10 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
         <label className="text-lg font-normal" htmlFor="content">
           Content
         </label>
-        <SunEditor
+        <Suspense>
+          <Editor onChange={handleEditorChange} content={formik.values.htmlContent}/>
+        </Suspense>
+        {/* <SunEditor
           name="htmlContent"
           onChange={handleEditorChange}
           // onBlur={formik.handleBlur}
@@ -300,7 +302,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
           }}
           height="100%"
           placeholder="Enter post content here..."
-        />
+        /> */}
         {formik.touched.htmlContent && formik.errors.htmlContent ? (
           <p className="text-red-500 text-base font-normal">
             {formik.errors.htmlContent}
