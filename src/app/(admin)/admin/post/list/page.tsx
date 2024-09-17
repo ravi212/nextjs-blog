@@ -1,10 +1,10 @@
 import Posts from '@/components/molecules/admin/posts'
 import { getAllPosts } from '@/lib/actions/post.action'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const Page = async () => {
-    const result: any = await getAllPosts();
+    const result: any = await getAllPosts(true);
     let posts!: PostType;
     if (result?.success) {
       posts = result?.posts;

@@ -7,13 +7,13 @@ const Page = async ({
   searchParams,
 }: {
   params: { category: string };
-  searchParams?: { [key: string]: string | string[] | undefined | QueryType };
+  searchParams?: { [key: string]: string | string[] | undefined | any };
 }) => {
 
   const category = params?.category
   const queryParams = {page: searchParams?.page, pageSize: searchParams?.pageSize};
 
-  const data = await getAllPosts(category, queryParams);
+  const data = await getAllPosts(false, category, queryParams);
 
   const posts: any = data?.posts;
   const totalCount: number = data?.totalCount;

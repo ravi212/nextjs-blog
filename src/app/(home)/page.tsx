@@ -13,7 +13,7 @@ const Page = async ({
   const category = params?.category
   const queryParams = {page: searchParams?.page, pageSize: searchParams?.pageSize};
 
-  const data = await getAllPosts(category, queryParams);
+  const data = await getAllPosts(false, category, queryParams);
   const posts: any = data?.posts;
   const totalCount: number = data?.totalCount;
 

@@ -51,18 +51,22 @@ export const editPost = async (id: string | undefined, payload: PostType) => {
 }
 
 // get list of posts
-export const getAllPosts = async (categorySlug?: string | string[] | undefined, query?: any ) => {
+export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | string[] | undefined, query?: any) => {
 
     let page = 1;
     let pageSize = 10;
 
     if (query) {
         page = query?.page;
-        pageSize = query?.pageSize
+        pageSize = query?.pageSize;
     }
+
+    console.log(query)
 
     const skip = (page - 1) * pageSize;
     const itemsPerPage = pageSize;
+
+    console.log(skip, itemsPerPage)
 
     try {
         await connectToDatabase();
@@ -78,12 +82,27 @@ export const getAllPosts = async (categorySlug?: string | string[] | undefined, 
             delete filters.category;
         }
         
-        const posts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl")
+        const tempPosts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl")
         .populate("author")
         .populate("category")
         .skip(skip)
         .limit(itemsPerPage)
-        .exec();
+        .exec()
+
+        let posts = tempPosts;
+
+        if (!isAdmin) {
+        //sort pinned at top
+        posts = tempPosts.sort((a, b) => {
+            if(a.pinned && !b.pinned) {
+              return -1;
+            }else if (!a.pinned && b.pinned){
+                return 1;
+            }else {
+                return 0
+            }
+            });
+        }
 
         const totalCount = await Post.countDocuments();
 
@@ -105,11 +124,11 @@ export const toggleFeatured = async (_id: string | undefined) => {
 
     try {
 
-        const featuredPost = await Post.find({featured: true});
+        // const featuredPost = await Post.find({featured: true});
 
-        if (featuredPost.length > 0) {
-          await Post.findOneAndUpdate({ _id: featuredPost[0]._id }, {featured: false});
-        }
+        // if (featuredPost.length > 0) {
+        //   await Post.findOneAndUpdate({ _id: featuredPost[0]._id }, {featured: false});
+        // }
 
         const postFeatured = await Post.findById(_id, "featured");
         const isFeatured = postFeatured?.featured

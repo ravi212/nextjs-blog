@@ -21,10 +21,10 @@ const Posts = ({initialPosts}: {initialPosts: any}) => {
   const [posts, setPosts] = useState(initialPosts)
 
   const getPosts = async () => {
-    const result: any = await getAllPosts();
-    let posts!: PostType;
+    const result: any = await getAllPosts(true);
+
     if (result?.success) {
-      setPosts(JSON.parse(JSON.stringify(result?.posts)))
+      setPosts(result?.posts)
     }
   }
 

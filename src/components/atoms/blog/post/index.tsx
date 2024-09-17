@@ -3,6 +3,8 @@ import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
+import StarsIcon from '@mui/icons-material/Stars';
+import PushPinIcon from '@mui/icons-material/PushPin';
 
 const BlogPost = ({
   title,
@@ -30,6 +32,22 @@ const BlogPost = ({
           src={imageUrl}
           priority={true}
         />
+
+        {
+          pinned && <div className="absolute right-2 top-2">
+            {/* <p className="text-xs">Featured</p> */}
+            <PushPinIcon className="text-white w-6 h-6"/>
+          </div>
+        }
+
+        {
+          featured && <div className="absolute left-2 top-2">
+            {/* <p className="text-xs">Featured</p> */}
+            <StarsIcon className="text-white w-6 h-6 bg-yellow-600 rounded-full"/>
+          </div>
+        }
+
+
       </div>
       <div className="md:p-6 p-4">
         <div className="flex justify-between md:flex-row items-start flex-col ">
