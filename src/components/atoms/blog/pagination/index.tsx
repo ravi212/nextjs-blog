@@ -18,7 +18,7 @@ const PostsPagination = ({totalCount} : {totalCount: number}) => {
 
         const page = parseInt(searchParams.get('page') as string)
         const pageSize = parseInt(searchParams.get('pageSize') as string) 
-        // console.log(page, pageSize)
+
         setPage(page);
         setPageSize(pageSize)
 

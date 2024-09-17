@@ -61,12 +61,8 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
         pageSize = query?.pageSize;
     }
 
-    console.log(query)
-
     const skip = (page - 1) * pageSize;
     const itemsPerPage = pageSize;
-
-    console.log(skip, itemsPerPage)
 
     try {
         await connectToDatabase();
