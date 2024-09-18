@@ -36,7 +36,7 @@ const BgLayout = async ({ children }) => {
 
             <Link href={`https://ravi.rainaspace.com`} target='_blank' className='flex items-center gap-2 hover:text-red-400 text-white'>
               <RecentActorsIcon className='w-8 h-8' />
-              <p className='text-base font-medium md:flex hidden'>it's me here</p>
+              <p className='text-base font-medium md:flex hidden'>Portfolio</p>
             </Link>
           </div>
    
