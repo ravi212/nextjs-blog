@@ -5,6 +5,7 @@ import { getAllCategories } from '@/lib/actions/category.action';
 import Aside from '../../../atoms/blog/layout/aside';
 import Footer from '../../admin/layout/Footer';
 import { Suspense } from 'react';
+import CottageIcon from '@mui/icons-material/Cottage';
 const SideDrawer = dynamic(() => import('@/components/atoms/blog/layout/drawer'), {ssr: false})
 
 const BgLayout = async ({ children }) => {
@@ -25,23 +26,28 @@ const BgLayout = async ({ children }) => {
                 </Suspense>
                 
               </div>
-              
-              <Link href={'/'} className="text-center text-white text-2xl font-semibold cursor-pointer hover:text-red-400">Ravi R.</Link>
+            <Link href={'/'} className="text-center lg:flex hidden text-white text-2xl font-semibold cursor-pointer hover:text-red-400">
+             <CottageIcon className='w-7 h-7'/>
+            </Link>
+            <Link href={'/'} className="text-center text-white text-2xl font-semibold cursor-pointer hover:text-red-400">Ravi R.</Link>
+           
             </div>
+            
+
             <Link href={`https://ravi.rainaspace.com`} target='_blank' className='flex items-center gap-2 hover:text-red-400 text-white'>
               <RecentActorsIcon className='w-8 h-8' />
-              <p className='text-base font-medium md:flex hidden'>Portfolio</p>
+              <p className='text-base font-medium md:flex hidden'>it's me here</p>
             </Link>
           </div>
    
         </div>
-        <div className="flex flex-row md:p-6 p-0 gap-6 w-full mx-auto md:w-[100%] xl:w-[80%]">
-          <div className="w-[100%] container mx-auto mb-4">{children}</div>
+       
+        <div className="flex flex-row md:p-6 p-3 gap-6 w-full mx-auto md:w-[100%] min-h-screen">
+          <div className="w-[100%] mx-auto mb-4">{children}</div>
           <div className='w-[30%] lg:flex hidden'>
             <Suspense>
              <Aside categories={categories}/>
             </Suspense>
-            
           </div>
 
         </div>

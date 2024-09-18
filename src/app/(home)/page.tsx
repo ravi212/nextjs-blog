@@ -1,3 +1,4 @@
+import Home from "@/components/molecules/blog/home";
 import Posts from "@/components/molecules/blog/posts";
 import { getAllPosts } from "@/lib/actions/post.action";
 import { revalidatePath } from "next/cache";
@@ -24,7 +25,7 @@ const Page = async ({
   }
 
   return (
-    <Posts posts={posts} totalCount={totalCount}/>
+    <Home posts={posts} />
   );
 };
 

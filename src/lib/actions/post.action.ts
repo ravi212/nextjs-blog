@@ -70,7 +70,7 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
         
         //category filters
         
-        if (categorySlug) {
+        if (categorySlug && categorySlug != 'all') {
             const category = await Category.findOne({slug: categorySlug});
 
             filters = {...{category: category._id}}
@@ -78,7 +78,7 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
             delete filters.category;
         }
         
-        const tempPosts = await Post.find(filters, "_id title slug createdAt updatedAt pinned featured tags textContent imageUrl")
+        const tempPosts = await Post.find(filters, "_id title description slug createdAt updatedAt pinned featured tags textContent imageUrl")
         .populate("author")
         .populate("category")
         .skip(skip)

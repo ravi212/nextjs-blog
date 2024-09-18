@@ -1,6 +1,7 @@
 type PostType = {
     _id?: string;
     title: string;
+    description: string;
     slug: string;
     textContent: string;
     htmlContent: string;

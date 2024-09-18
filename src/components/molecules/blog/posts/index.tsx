@@ -9,8 +9,11 @@ const PostsPagination = dynamic(() => import('@/components/atoms/blog/pagination
 const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => {
 
   return (
-    <div className='flex flex-col md:gap-6'>
-      {posts.map(post => (
+    <div className='flex flex-col md:gap-6 gap-3 w-full'>
+      {
+        posts && posts.length > 0 ?
+        <>
+        {posts.map(post => (
         <BlogPost
           key={post._id}
           title={post.title}
@@ -23,13 +26,23 @@ const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => 
           hashTags={post?.tags}
           author={`${post.author.firstName} ${post.author.lastName}`}
           category={post?.category}
+          description={post?.description}
         />
+        ))
+      }
 
-      ))}
+        <div className='py-8 w-full flex justify-center'>
+          <PostsPagination totalCount={totalCount} />
+        </div>
+        </>
 
-      <div className='py-8 w-full flex justify-center'>
-        <PostsPagination totalCount={totalCount} />
-      </div>
+        :
+        <div className='w-full flex justify-center items-center py-10'>
+          <p className=''>No posts found</p>
+        </div>
+        
+      }
+
       
 
     </div>

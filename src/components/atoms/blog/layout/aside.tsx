@@ -15,7 +15,7 @@ const Aside = ({categories}: {categories: CategoryType[]}) => {
         {/* <Divider orientationMargin={1} prefixCls='Search'/>
         <Input placeholder=''/>
         <Divider orientationMargin={1}/> */}
-        <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} href={`/`}>All</Link>
+        <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} href={`/category/all`}>All</Link>
         {
             categories?.map((cat: CategoryType, index: number) => (
             <Link className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/category/${cat.slug}`}>{cat.title}</Link>

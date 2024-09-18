@@ -17,6 +17,9 @@ const validationSchema = Yup.object({
   title: Yup.string()
     .required("Title is required")
     .min(3, "Title must be at least 3 characters long"),
+  description: Yup.string()
+    .required("Description is required")
+    .min(3, "Description must be at least 3 characters long"),
   slug: Yup.string()
     .required("Slug is required")
     .matches(
@@ -46,6 +49,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
   const formik = useFormik({
     initialValues: {
       title: "",
+      description: "",
       slug: "",
       imageUrl: "",
       textContent: "",
@@ -171,7 +175,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="text-lg font-normal" htmlFor="title">
+        <label className="text-lg font-normal" htmlFor="slug">
           Slug
         </label>
         <Input
@@ -191,6 +195,26 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
         ) : null}
       </div>
 
+      <div className="flex flex-col gap-2">
+        <label className="text-lg font-normal" htmlFor="description">
+         Description
+        </label>
+        <Input
+          placeholder="Enter description..."
+          size="large"
+          id="description"
+          name="description"
+          type="text"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.description && formik.errors.description ? (
+          <p className="text-red-500 text-base font-normal">
+            {formik.errors.description}
+          </p>
+        ) : null}
+      </div>
 
       <div className="flex flex-col gap-2">
         <label className="text-lg font-normal" htmlFor="author">
@@ -321,7 +345,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
           onChange={handleFileUpload}
         />
         {formik.errors.imageUrl && formik.touched.imageUrl ? (
-          <div>{formik.errors.imageUrl}</div>
+          <div className="text-red-500">{formik.errors.imageUrl}</div>
         ) : null}
         {imageError && <p className="text-red-500">{imageError}</p>}
         {imageSuccess && <p className="text-green-500">{imageSuccess}</p>}
