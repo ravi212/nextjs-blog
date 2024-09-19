@@ -22,7 +22,7 @@ const BlogPost = ({
   return (
     <Link
       href={{ pathname: `/category/${category?.slug}/${slug}` }}
-      className="bg-white rounded-lg drop-shadow-2xl flex flex-col cursor-pointer"
+      className="bg-white rounded-lg drop-shadow-2xl flex flex-col cursor-pointer "
     >
       <div
         className={`relative w-full md:min-h-[300px] min-h-[400px] overflow-hidden rounded-t-xl shadow-xl col-span-2 md:col-span-1 cursor-pointer`}

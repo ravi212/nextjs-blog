@@ -9,7 +9,7 @@ import { formatDate } from "@/utils/common";
 const FeaturedPost = ({ post, index }: { post: PostType; index: number }) => {
   return (
       <div
-        className={`relative w-full min-h-64 overflow-hidden rounded-xl shadow-xl ${
+        className={`relative w-full min-h-64 overflow-hidden rounded-xl transition-all duration-150 ease-in-out  hover:scale-105 shadow-xl hover:shadow-2xl ${
           index === 0 ? "col-span-2 relative" : "col-span-2 md:col-span-1"
         }`}
       >

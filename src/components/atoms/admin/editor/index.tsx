@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import ReactQuill from 'react-quill';
 
-const Editor = ({content, onChange}: {content: string; onChange: (value) => void}) => {
+const Editor = ({content, onChange}: {content: string; onChange: (html, delta) => void}) => {
   const editorRef = useRef<any>();
 
   const quillModules = {
@@ -45,11 +45,16 @@ const Editor = ({content, onChange}: {content: string; onChange: (value) => void
     'code-block',
   ];
 
+  // handleChange expects a function with these 4 arguments
+  function handleChange(content, delta, source, editor) {
+    onChange(content, editor.getContents());
+  }
+
   return <ReactQuill
   ref={editorRef}
   id='htmlContent'
   value={content}
-  onChange={onChange}
+  onChange={handleChange}
   modules={quillModules}
   formats={quillFormats}
   placeholder='Enter text here...'

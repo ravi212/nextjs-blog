@@ -10,7 +10,7 @@ const PinnedPost = ({post}: {post: PostType}) => {
 
   return (
     <Link href={{ pathname: `/category/${post?.category?.slug}/${post?.slug}`}}>
-    <div  className="relative w-[100%] min-h-[500px] overflow-hidden rounded-xl ">
+    <div  className="relative w-[100%] min-h-[500px] overflow-hidden rounded-xl transition-all duration-150 ease-in-out shadow-xl hover:shadow-2xl">
     {/* overlay with opacity */}
     <div className="w-full h-full absolute bg-opacity-90 z-10 inset-0 bg-gradient-to-t from-black "></div>
     <Image

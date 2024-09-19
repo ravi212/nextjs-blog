@@ -22,7 +22,7 @@ const Post = async ({ slug }: { slug: string }) => {
   const window = new JSDOM("").window;
   const DOMPurifyServer = DOMPurify(window);
 
-  const rawHTML = post?.htmlContent;
+  const rawHTML = post.htmlContent?.replace(/&lt;/g, "<").replace(/&gt;/g, ">") ;
 
   return (
     <div className="w-full">
@@ -72,12 +72,12 @@ const Post = async ({ slug }: { slug: string }) => {
         </div>
 
         {/* Post content */}
-        <div
+        <article
           dangerouslySetInnerHTML={{
             __html: DOMPurifyServer.sanitize(rawHTML),
           }}
-          className="text-gray-800 md:py-6 md:px-6 py-4 px-4 content"
-        ></div>
+          className="text-gray-800 md:py-6 md:px-6 py-4 px-4 content article-container"
+        ></article>
       </div>
     </div>
   );

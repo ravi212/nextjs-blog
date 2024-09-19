@@ -58,7 +58,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
       pinned: false,
       category: '',
       tags: [],
-      author: ''
+      author: '',
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -143,9 +143,9 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
     formik.setFieldValue("author", value);
   };
 
-  const handleEditorChange = (value) => {
-    formik.setFieldValue("htmlContent", value);
-    const plainText = htmlToPlainText(value).substring(0, 300);
+  const handleEditorChange = (html, delta) => {
+    formik.setFieldValue("htmlContent", html);
+    const plainText = htmlToPlainText(html).substring(0, 300);
     formik.setFieldValue("textContent", plainText);
   }
 

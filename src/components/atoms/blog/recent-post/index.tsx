@@ -9,7 +9,7 @@ import { formatDate } from "@/utils/common";
 const RecentPost = ({ post, index }: { post: PostType; index: number }) => {
   return (
       <div
-        className={`relative w-full min-h-64 overflow-hidden rounded-xl shadow-xl col-span-2 md:col-span-1 cursor-pointer`}
+        className={`relative  hover:scale-105 transition-all duration-150 ease-in-out  hover:shadow-2xl w-full min-h-64 overflow-hidden rounded-xl shadow-xl col-span-2 md:col-span-1 cursor-pointer`}
       >
     <Link
       href={{ pathname: `/category/${post?.category?.slug}/${post?.slug}` }}

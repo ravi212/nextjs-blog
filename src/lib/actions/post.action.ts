@@ -26,6 +26,7 @@ export const createPost = async (payload: PostType) => {
     
         return {error: "Error Creating Post!"}
     } catch (err) {
+        console.log(err)
         return {error: "Server Error!", err}
     }
 

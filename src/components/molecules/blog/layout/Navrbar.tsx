@@ -12,7 +12,7 @@ const Navrbar = ({ categories }: { categories: CategoryType[] }) => {
 
   return (
     <div className="bg-gray-700 shadow-xl px-7 py-6">
-      <div className="mx-auto w-full flex justify-between items-center">
+      <div className="mx-auto w-full xl:w-4/5 flex justify-between items-center">
         <div className="flex gap-3 items-center">
           <div className="lg:hidden flex">
             <Suspense>
