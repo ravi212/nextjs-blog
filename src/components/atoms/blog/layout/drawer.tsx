@@ -37,7 +37,7 @@ const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
             </div>
 
             <div className='py-6 flex flex-col gap-3 items-center'>
-            <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} href={`/category/all`}>All</Link>
+            <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} onClick={() => setIsOpen(false)} href={`/category/all`}>All</Link>
               {
                   categories?.map((cat: CategoryType, index: number) => (
                   <Link onClick={() => setIsOpen(false)} className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-medium': ''} text-primaryColor text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/category/${cat.slug}`}>{cat.title}</Link>
