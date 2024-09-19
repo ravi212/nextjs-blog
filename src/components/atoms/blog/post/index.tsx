@@ -47,21 +47,21 @@ const BlogPost = ({
         {featured && (
           <div className="absolute left-2 top-2">
             {/* <p className="text-xs">Featured</p> */}
-            <StarsIcon className="text-white w-6 h-6 bg-yellow-600 rounded-full" />
+            <StarsIcon className="text-gray-800 w-6 h-6 bg-white rounded-full" />
           </div>
         )}
 
         {/* title and author */}
-        <div className="z-20 flex flex-col w-3/4 md:w-2/3 py-7 absolute bottom-0 md:left-10 left-5">
-          <div className="text-white py-4 text-xs font-normal items-center ">
-            <span className="bg-gray-800 border border-gray-500 p-2 rounded-full">
+        <div className="z-20 flex flex-col w-3/4 py-7 absolute bottom-0 left-5">
+          <div className="text-white py-5 text-xs font-normal items-center ">
+            <span className="bg-gray-800 border border-gray-500 p-2 rounded-md">
               <TypeSpecimenIcon className="w-4 h-4 text-white" />{" "}
               <span>{`${category.title}`}</span>
             </span>
           </div>
 
           <h2 className="text-white text-2xl font-medium ">{title}</h2>
-          <h2 className="text-white text-base py-3">{description}</h2>
+          <h2 className="text-white text-base py-2">{description}</h2>
           <div className="text-white text-sm font-medium items-center">
             <PortraitIcon className="w-6 h-6 text-white" />{" "}
             <span>{`${author}`}</span>

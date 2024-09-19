@@ -1,5 +1,5 @@
 "use client"
-import { Checkbox, Divider, Input } from 'antd'
+
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import React from 'react'
@@ -11,6 +11,7 @@ const Aside = ({categories}: {categories: CategoryType[]}) => {
     const activeCatId = categories?.find((cat: CategoryType) => cat.slug == category)?._id
 
   return (
+    <div className='w-[30%] lg:flex hidden'>
     <aside className=" flex flex-col gap-3 p-3">
         {/* <Divider orientationMargin={1} prefixCls='Search'/>
         <Input placeholder=''/>
@@ -24,6 +25,7 @@ const Aside = ({categories}: {categories: CategoryType[]}) => {
         {/* <Divider></Divider>
         <Checkbox ><span className='text-base'>Featured Only</span></Checkbox> */}
     </aside>
+    </div>
   )
 }
 

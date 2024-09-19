@@ -29,9 +29,9 @@ const PinnedPost = ({post}: {post: PostType}) => {
     </div>
 
   {/* title and author */}
-  <div className="z-20 flex flex-col  w-3/4 md:w-2/3 py-7 absolute bottom-0 left-6">
-      <div className="text-white py-6 text-xs font-medium items-center ">
-        <span className="bg-gray-800 border border-gray-500 p-3  rounded-full">
+  <div className="z-20 flex flex-col  w-4/5 sm:w-3/4 py-7 absolute bottom-0 left-6">
+      <div className="text-white py-6 text-sm font-medium items-center ">
+        <span className="bg-gray-800 border border-gray-500 p-2 rounded-md">
           <TypeSpecimen className="w-5 h-5 text-white" />{" "}
           <span>{`${post.category.title}`}</span>
         </span>

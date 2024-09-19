@@ -1,6 +1,9 @@
+import Aside from "@/components/atoms/blog/layout/aside";
 import Posts from "@/components/molecules/blog/posts";
+import { getAllCategories } from "@/lib/actions/category.action";
 import { getAllPosts } from "@/lib/actions/post.action";
 import { revalidatePath } from "next/cache";
+import { Suspense } from "react";
 
 const Page = async ({
   params,
@@ -18,6 +21,9 @@ const Page = async ({
   const posts: any = data?.posts;
   const totalCount: number = data?.totalCount;
 
+  const res: any = await getAllCategories();
+  const categories = res?.categories;
+
   revalidatePath(`/(home)/category/[category]`, 'page');
 
   if (!posts) {
@@ -25,7 +31,15 @@ const Page = async ({
   }
 
   return (
-    <Posts posts={posts} totalCount={totalCount} />
+    <div className="flex flex-row gap-6 w-full mx-auto md:w-[100%] min-h-screen">
+      <div className="w-[100%] mx-auto mb-4">
+        <Posts posts={posts} totalCount={totalCount} />
+      </div>
+      <Suspense>
+          <Aside categories={categories}/>
+      </Suspense>
+    </div>
+    
   );
 };
 

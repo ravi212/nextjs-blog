@@ -6,6 +6,7 @@ import Navbar from "@/components/atoms/admin/layout/Navbar";
 import SideDrawer from "@/components/atoms/admin/layout/Drawer";
 import { AdminMenuType, ScreenSizes } from "@/enum/enum";
 import ListIcon from "@mui/icons-material/List";
+import Footer from "./Footer";
 
 const { Content } = Layout;
 type Props = {
@@ -47,7 +48,8 @@ const AdLayout: React.FC<Props> = ({ children }) => {
             />
           )}
         </Navbar>
-        <Content style={{ margin: "0 16px", padding: "30px 10px" }}>{children}</Content>
+          <Content style={{ margin: "0 16px", padding: "30px 10px" }}>{children}</Content>
+        <Footer />
       </Layout>
 
       <SideDrawer

@@ -33,7 +33,7 @@ const Post = async ({ slug }: { slug: string }) => {
       <div className="bg-white rounded-lg drop-shadow-2xl ">
 
         {/* header */}
-        <div className="relative w-[100%] min-h-[500px] overflow-hidden md:rounded-t-lg ">
+        <div className="relative w-[100%] min-h-[500px] overflow-hidden rounded-t-lg ">
           {/* overlay with opacity */}
           <div className="w-full h-full absolute bg-opacity-50 z-10 inset-0 bg-gradient-to-t from-black "></div>
           <Image
@@ -53,16 +53,16 @@ const Post = async ({ slug }: { slug: string }) => {
           </div>
 
         {/* title and author */}
-        <div className="z-20 flex flex-col w-2/3 py-7 absolute bottom-0 left-10">
-            <div className="text-white py-6 text-xs font-medium items-center ">
-              <span className="bg-gray-800 border border-gray-500 p-3  rounded-full">
+        <div className="z-20 flex flex-col w-4/5 sm:w-3/4 py-7 absolute bottom-0 left-6">
+            <div className="text-white py-6 text-sm font-medium items-center ">
+              <span className="bg-gray-800 border border-gray-500 p-3 rounded-md">
                 <TypeSpecimenIcon className="w-5 h-5 text-white" />{" "}
                 <span>{`${post.category.title}`}</span>
               </span>
 
             </div>
 
-          <h2 className="text-white md:text-4xl text-3xl font-medium ">{post.title}</h2>
+          <h2 className="text-white md:text-4xl text-2xl font-medium ">{post.title}</h2>
           <h2 className="text-white text-base py-4">{post.description}</h2>
           <div className="text-white text-sm font-medium items-center">
               <PortraitIcon className="w-6 h-6 text-white" />{" "}

@@ -9,7 +9,7 @@ const PostsPagination = dynamic(() => import('@/components/atoms/blog/pagination
 const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => {
 
   return (
-    <div className='flex flex-col md:gap-6 gap-3 w-full'>
+    <div className='flex flex-col gap-6 w-full'>
       {
         posts && posts.length > 0 ?
         <>
@@ -42,9 +42,6 @@ const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => 
         </div>
         
       }
-
-      
-
     </div>
   )
 }
