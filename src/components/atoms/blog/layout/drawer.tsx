@@ -15,7 +15,7 @@ const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
 
   return (
     <div>
-    <ListIcon onClick={() => setIsOpen(!isOpen)} className='text-white w-7 h-7 cursor-pointer'/>
+    <ListIcon onClick={() => setIsOpen(!isOpen)} className='text-white w-6 h-6 cursor-pointer'/>
     <Drawer
         placement="left"
         width={320}
@@ -30,7 +30,7 @@ const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
                 <div className='flex items-center justify-center'>
                 <Link href={'/'} className="text-center flex gap-2 items-center text-gray-700 text-xl font-semibold cursor-pointer hover:text-red-400">
                   <CottageIcon className='w-6 h-6 '/>
-                  <span>Home</span>
+                  {/* <span className='text-base'>Home</span> */}
                 </Link>
                 </div>
                 <CloseIcon className='cursor-pointer text-primaryColor' onClick={() => setIsOpen(!isOpen)} />

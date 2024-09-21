@@ -13,7 +13,7 @@ const BgLayout = async ({ children }) => {
         
         <Navrbar categories={categories} />
 
-        <div className="flex flex-row md:p-6 p-3 gap-6 w-full mx-auto xl:w-4/5 min-h-screen">
+        <div className="flex flex-row md:p-6 p-3 gap-6 w-full mx-auto xl:w-11/12 min-h-screen">
           <div className="w-[100%] mx-auto mb-4">{children}</div>            
         </div>
 
