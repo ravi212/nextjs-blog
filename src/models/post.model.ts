@@ -44,6 +44,10 @@ const PostSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    inActive: {
+      type: Boolean,
+      default: false
+    },
     category: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Category",

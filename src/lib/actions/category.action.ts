@@ -49,11 +49,14 @@ export const editCategory = async (id: string, payload: CategoryType) => {
 }
 
 // get list of Categorys
-export const getAllCategories = async () => {
+export const getAllCategories = async (isAdmin: boolean = false) => {
 
     try {
         await connectToDatabase();
-        const categories = await Category.find({}, '_id title slug createdAt')
+
+        const filters = isAdmin ? {} : { inActive: false }
+
+        const categories = await Category.find(filters, '_id title slug inActive createdAt')
 
         if (categories) {
             return JSON.parse(JSON.stringify({ success:'ok', categories }))
@@ -96,6 +99,26 @@ export const getCategoryBySlug = async (slug: string) => {
             return JSON.parse(JSON.stringify({success: 'ok', category}))
         } 
     
+        return {error: "Not Found!"}
+
+    } catch (err) {
+        return {error: "Server Error!", err}
+    }
+
+}
+
+// Toggle active status checkbox to update on database
+export const toggleActive = async (_id: string | undefined) => {
+
+    try {
+        const categoryActive = await Category.findById(_id, "inActive");
+        const isActive = categoryActive?.inActive
+
+        const category = await Category.findOneAndUpdate({ _id }, {inActive: !isActive});
+        if (category) {
+            return JSON.parse(JSON.stringify({ success:'ok', message: "Updated Category!" }))
+        }
+
         return {error: "Not Found!"}
 
     } catch (err) {

@@ -1,12 +1,9 @@
 "use client"
-import CategoryEdit from '@/components/molecules/admin/category'
 import UserEdit from '@/components/molecules/admin/user'
 import Users from '@/components/molecules/admin/users'
-import { getAllCategories } from '@/lib/actions/category.action'
 import { getAllUsers } from '@/lib/actions/user.action'
 import { Modal } from 'antd'
 import dynamic from 'next/dynamic'
-const Categories = dynamic(() => import('@/components/molecules/admin/categories'), {ssr: false}) 
 import React, { useEffect, useState } from 'react'
 
 const Page = () => {

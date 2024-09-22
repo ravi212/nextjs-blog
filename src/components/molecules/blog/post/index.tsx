@@ -9,11 +9,7 @@ import { JSDOM } from "jsdom";
 import DOMPurify from "dompurify";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
 
-const Post = async ({ slug }: { slug: string }) => {
-  const data = await getPostBySlug(slug);
-  const post: PostType | any = data?.post;
-
-  revalidatePath(`/(home)/category/[category]/[slug]`, 'page');
+const Post = async ({ post }: { post: PostType }) => {
 
   if (!post) {
     return <div>Post not found</div>;
@@ -39,7 +35,6 @@ const Post = async ({ slug }: { slug: string }) => {
           <Image
             alt="blog-img"
             fill
-            objectFit="cover"
             className="absolute inset-0 "
             src={post?.imageUrl}
             priority={true}

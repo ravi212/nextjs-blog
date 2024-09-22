@@ -15,7 +15,7 @@ const Page = async ({
   searchParams?: { [key: string]: string  | undefined };
 }) => {
 
-  const response: any = await getAllCategories();
+  const response: any = await getAllCategories(true);
   const categories = response?.categories;
 
   const usersResponse: any = await getUsersByRole(UserRole.AUTHOR);

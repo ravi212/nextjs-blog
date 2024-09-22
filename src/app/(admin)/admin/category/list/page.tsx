@@ -16,7 +16,7 @@ const Page = () => {
   }, [])
 
   const getCategories = async () => {
-    const result = await getAllCategories();
+    const result = await getAllCategories(true);
     if (result?.success) {
       setCategories(result?.categories)
       setOpenModal(false)

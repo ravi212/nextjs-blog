@@ -1,9 +1,23 @@
 import Aside from "@/components/atoms/blog/layout/aside";
 import Posts from "@/components/molecules/blog/posts";
+import { siteMetaData } from "@/constants/siteMetaData";
 import { getAllCategories } from "@/lib/actions/category.action";
 import { getAllPosts } from "@/lib/actions/post.action";
 import { revalidatePath } from "next/cache";
 import { Suspense } from "react";
+
+
+export const generateMetadata = async ({ params }) => {
+  return {
+    title: `${(params.category).charAt(0).toUpperCase() + (params.category).slice(1)}`,
+    openGraph: {
+      title: siteMetaData.title,
+      description: siteMetaData.description,
+      url: siteMetaData.siteUrl + `/${params.category}`,
+    },
+  }
+}
+
 
 const Page = async ({
   params,

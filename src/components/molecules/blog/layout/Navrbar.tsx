@@ -38,6 +38,7 @@ const Navrbar = ({ categories }: { categories: CategoryType[] }) => {
 
         <Image
           src={Logo}
+          priority
           width={0}
           height={0}
           className="absolute m-auto top-0 right-0 bottom-0 left-0 w-10 h-10"

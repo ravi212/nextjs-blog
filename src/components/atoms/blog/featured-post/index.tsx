@@ -1,10 +1,7 @@
 import TypeSpecimen from "@mui/icons-material/TypeSpecimen";
-import PortraitIcon from "@mui/icons-material/Portrait";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import CalendarMonth from "@mui/icons-material/CalendarMonth";
-import { formatDate } from "@/utils/common";
 
 const FeaturedPost = ({ post, index }: { post: PostType; index: number }) => {
   return (

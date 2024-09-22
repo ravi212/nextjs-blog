@@ -183,7 +183,6 @@ export const logInUser = async (payload: any) => {
         return {error: "Invalid Username!"};
 
     } catch (e) {
-        console.log(e)
         return {error: "Server Error!"};
     }
 

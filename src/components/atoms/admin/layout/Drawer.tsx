@@ -23,8 +23,7 @@ const SideDrawer = ({isOpen, onClose}: SideMenuProps) => {
         <div className='px-3'>
             <div className='flex justify-between items-start py-4'>
                 <div className='flex items-center justify-center'>
-                    <p className="text-2xl font-medium text-primaryColor text-white">Ravi R.</p>
-                    {/* <p className="text-lg font-normal text-primaryColor">(Admin Panel)</p> */}
+                    <p className="text-2xl font-medium text-white">Ravi R.</p>
                 </div>
                 <CloseIcon className='cursor-pointer text-white' onClick={onClose} />
             </div>

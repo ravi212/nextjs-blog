@@ -6,9 +6,9 @@ export const siteMetaData = {
     language: 'en-us',
     theme: 'system', // system, dark or light
     siteUrl: 'https://sample-site-nextjs.vercel.app', // your website URL
-    siteLogo: '/logo.png', // add logo file in public folder
+    siteLogo: '/icons/logo.png', // add logo file in public folder
     socialBanner: '/social-banner.png', // add social banner in the public folder
-    email: 'sample@gmail.com', 
+    email: 'sample@gmail.com',
     github: 'https://github.com/',
     twitter: 'https://twitter.com/',
     facebook: 'https://facebook.com',

@@ -22,7 +22,7 @@ export const htmlToPlainText = (html: string) => {
         .join('\n'); // Join paragraphs with newline
 
     // Replace multiple newlines with a single space
-    text = text.replace(/\n+/g, ' ').trim(); // Replace newlines with a single space and trim extra spaces
+    text = text.replace(/\n+/g, ' ').replace(/&nbsp;/g, '').trim(); // Replace newlines with a single space and trim extra spaces
 
     return text;
 };

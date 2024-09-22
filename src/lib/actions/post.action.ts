@@ -26,7 +26,6 @@ export const createPost = async (payload: PostType) => {
     
         return {error: "Error Creating Post!"}
     } catch (err) {
-        console.log(err)
         return {error: "Server Error!", err}
     }
 
@@ -67,7 +66,7 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
 
     try {
         await connectToDatabase();
-        let filters: any = {};    
+        let filters: any = isAdmin ? {} : { inActive: false };    
         
         //category filters
         
@@ -79,7 +78,7 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
             delete filters.category;
         }
         
-        const tempPosts = await Post.find(filters, "_id title description slug createdAt updatedAt pinned featured tags textContent imageUrl")
+        const tempPosts = await Post.find(filters, "_id title inActive description slug createdAt updatedAt pinned featured tags textContent imageUrl")
         .populate("author")
         .populate("category")
         .skip(skip)
@@ -110,7 +109,6 @@ export const getAllPosts = async (isAdmin: boolean, categorySlug?: string | stri
         return {error: "Not Found!"}
 
     } catch (err) {
-        console.log(err)
         return {error: "Server Error!", err}
     }
 
@@ -131,6 +129,28 @@ export const toggleFeatured = async (_id: string | undefined) => {
         const isFeatured = postFeatured?.featured
 
         const post = await Post.findOneAndUpdate({ _id }, {featured: !isFeatured});
+
+        if (post) {
+            return JSON.parse(JSON.stringify({ success:'ok', message: "Updated Post!" }))
+        }
+
+        return {error: "Not Found!"}
+
+    } catch (err) {
+        return {error: "Server Error!", err}
+    }
+
+}
+
+
+// Toggle active status checkbox to update on database
+export const toggleActive = async (_id: string | undefined) => {
+
+    try {
+        const postActive = await Post.findById(_id, "inActive");
+        const isActive = postActive?.inActive
+
+        const post = await Post.findOneAndUpdate({ _id }, {inActive: !isActive});
 
         if (post) {
             return JSON.parse(JSON.stringify({ success:'ok', message: "Updated Post!" }))

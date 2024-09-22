@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Layout } from "antd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { signOut } from "next-auth/react";
 
@@ -15,7 +14,7 @@ const Navbar = ({
     <div className="bg-white shadow-xl p-6 flex items-center justify-between">
       <div className="flex items-center gap-6 justify-center">
         {children}
-        <p className="text-2xl font-medium text-primaryColor">Ravi R.</p>
+        <p className="text-2xl font-medium text-gray-800">Ravi R.</p>
       </div>
       <div onClick={() => signOut()} className="flex gap-3">
         <LogoutIcon className="cursor-pointer" />

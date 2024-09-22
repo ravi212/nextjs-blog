@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
-import { Popconfirm, Table } from "antd";
+import { Checkbox, Popconfirm, Table } from "antd";
 import type { TableColumnsType } from "antd";
-import { deleteCategory } from "@/lib/actions/category.action";
+import { deleteCategory, toggleActive } from "@/lib/actions/category.action";
 import { formatDate } from "@/utils/common";
 
 interface DataType {
   _id: string;
   title: string;
   slug: number;
+  inActive: boolean;
   createdAt: any;
 }
 
@@ -26,6 +27,11 @@ const Categories = ({
     reGetCategories();
   };
 
+  const handleActive = async (id: string) => {
+    await toggleActive(id);
+    reGetCategories();
+  }
+
   const columns: TableColumnsType<DataType> = [
     { title: "Title", dataIndex: "title", key: "title" },
     { title: "Slug", dataIndex: "slug", key: "slug" },
@@ -38,6 +44,15 @@ const Categories = ({
           <p>{formatDate(createdAt)}</p>
         </div>
       ),
+    },
+    {
+      title: 'Disabled?',
+      dataIndex: '',
+      key: 'inActive',
+      render: (row) => <div className='flex gap-4'>
+        <Checkbox checked={row.inActive} onChange={() => handleActive(row._id)}>
+        </Checkbox> 
+      </div>,
     },
     {
       title: "Action",

@@ -8,7 +8,7 @@ import React from 'react'
 
 const Page = async () => {
 
-  const response: any = await getAllCategories();
+  const response: any = await getAllCategories(true);
   const categories = response?.categories;
   
   const usersResponse: any = await getUsersByRole(UserRole.AUTHOR);

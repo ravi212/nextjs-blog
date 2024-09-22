@@ -33,14 +33,14 @@ const SideDrawer = ({categories}: {categories: CategoryType[]}) => {
                   {/* <span className='text-base'>Home</span> */}
                 </Link>
                 </div>
-                <CloseIcon className='cursor-pointer text-primaryColor' onClick={() => setIsOpen(!isOpen)} />
+                <CloseIcon className='cursor-pointer text-gray-800' onClick={() => setIsOpen(!isOpen)} />
             </div>
 
             <div className='py-6 flex flex-col gap-3 items-center'>
             <Link className={`${!activeCatId ? 'text-red-400 text-lg font-medium': ''} text-base hover:text-red-400 hover:text-lg transition-all `} onClick={() => setIsOpen(false)} href={`/category/all`}>All</Link>
               {
                   categories?.map((cat: CategoryType, index: number) => (
-                  <Link onClick={() => setIsOpen(false)} className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-medium': ''} text-primaryColor text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/category/${cat.slug}`}>{cat.title}</Link>
+                  <Link onClick={() => setIsOpen(false)} className={`${activeCatId == cat._id ? 'text-red-400 text-lg font-semibold': ''} text-gray-800 text-base hover:text-red-400 hover:text-lg transition-all `} key={index} href={`/category/${cat.slug}`}>{cat.title}</Link>
               ))
               }
                

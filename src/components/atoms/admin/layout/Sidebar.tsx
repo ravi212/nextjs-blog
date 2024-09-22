@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Layout, Menu } from 'antd';
 import { ADMIN_NAV_ITEMS } from '@/constants/admin.const';
 import { usePathname } from 'next/navigation';
@@ -11,12 +11,8 @@ const SideBar = ({collapsed}: {collapsed: boolean}) => {
   
   const pathName = usePathname();
 
-  const isActive = () => {
-    
-  }
-
   return (
-    <Sider width={250} trigger={null} collapsible collapsed={collapsed} className="w-full bg-secondaryColor">
+    <Sider width={250} trigger={null} collapsible collapsed={collapsed} className="w-full bg-[#0e1f39]">
         <div className='px-3'>
             <div className='py-6 flex flex-col gap-3 items-center'>
               {

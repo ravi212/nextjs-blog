@@ -1,5 +1,4 @@
 import Home from "@/components/molecules/blog/home";
-import Posts from "@/components/molecules/blog/posts";
 import { getAllCategories } from "@/lib/actions/category.action";
 import { getAllPosts } from "@/lib/actions/post.action";
 import { revalidatePath } from "next/cache";

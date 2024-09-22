@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Checkbox, Popconfirm, Table } from 'antd';
 import type { TableColumnsType } from 'antd';
 import Link from 'next/link';
-import { deletePost, getAllPosts, toggleFeatured, togglePinned } from '@/lib/actions/post.action';
+import { deletePost, getAllPosts, toggleActive, toggleFeatured, togglePinned } from '@/lib/actions/post.action';
 import { formatDate } from '@/utils/common';
-import { redirect } from 'next/navigation';
+
 interface DataType {
   _id: string;
   title: string;
@@ -14,6 +14,7 @@ interface DataType {
   featured: boolean;
   pinned: boolean;
   createdAt: any;
+  inActive: boolean;
 }
 
 const Posts = ({initialPosts}: {initialPosts: any}) => {
@@ -43,6 +44,11 @@ const Posts = ({initialPosts}: {initialPosts: any}) => {
     getPosts()
   }
 
+  const handleActive = async (id: string) => {
+    await toggleActive(id);
+    getPosts();
+  }
+
   const columns: TableColumnsType<DataType> = [
     { title: 'Title', dataIndex: 'title', key: 'title' },
     { title: 'Slug', dataIndex: 'slug', key: 'slug' },
@@ -51,6 +57,15 @@ const Posts = ({initialPosts}: {initialPosts: any}) => {
       <p>{formatDate(createdAt) }</p> 
     </div>,
      },
+     {
+      title: 'Disabled?',
+      dataIndex: '',
+      key: 'inActive',
+      render: (row) => <div className='flex  gap-4'>
+        <Checkbox checked={row.inActive} onChange={() => handleActive(row._id)}>
+        </Checkbox> 
+      </div>,
+    },
     {
       title: 'Pinned',
       dataIndex: '',
