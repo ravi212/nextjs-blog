@@ -1,8 +1,17 @@
+import Dashboard from '@/components/molecules/admin/dashboard'
+import { getAllCategories } from '@/lib/actions/category.action';
+import { getAllPosts } from '@/lib/actions/post.action'
+import { getAllUsers } from '@/lib/actions/user.action';
 import React from 'react'
 
-const Page = () => {
+const Page = async () => {
+
+  const posts = (await getAllPosts(true))?.posts;
+  const authors = (await getAllUsers())?.users;
+  const categories = (await getAllCategories())?.categories;
+
   return (
-    <div className='w-full min-h-screen flex justify-center items-center'><p>This is admin dashboard</p></div>
+    <Dashboard posts={posts} categories={categories} authors={authors} />
   )
 }
 
