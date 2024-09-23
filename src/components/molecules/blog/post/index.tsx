@@ -38,6 +38,7 @@ const Post = async ({ post }: { post: PostType }) => {
             className="absolute inset-0 "
             src={post?.imageUrl}
             priority={true}
+            style={{objectFit: 'cover'}}
           />
           
           <div className="flex items-center gap-1  rounded-lg p-2 absolute right-6 bottom-6 z-20">
