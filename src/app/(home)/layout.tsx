@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { siteMetaData } from "@/constants/siteMetaData";
+import GoogleAnalytics from "@/utils/GoogleAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetaData.siteUrl),
@@ -39,7 +40,8 @@ export default function BlogLayout({children}: Readonly<{children: React.ReactNo
     <html lang="en">
       <body>
           {children}
-        </body>
+      </body>
+      <GoogleAnalytics />
     </html>
   );
 }
