@@ -59,7 +59,7 @@ const Post = async ({ post }: { post: PostType }) => {
             </div>
 
           <h2 className="text-white md:text-4xl text-2xl font-medium ">{post.title}</h2>
-          <h2 className="text-white text-base py-4">{post.description}</h2>
+          <h2 className="text-white md:text-xl text-lg py-4">{post.description}</h2>
           <div className="text-white text-sm font-medium items-center">
               <PortraitIcon className="w-6 h-6 text-white" />{" "}
               <span>{`${post.author.firstName} ${post.author.lastName}`}</span>
