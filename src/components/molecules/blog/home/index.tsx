@@ -37,7 +37,7 @@ const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryTy
       <Divider />
       
       {featuredPosts && (
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
           {featuredPosts.map((post: PostType, index: number) => (
             <FeaturedPost key={index} post={post} index={index} />
           ))}
@@ -63,7 +63,7 @@ const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryTy
 
       {/* recent posts */}
       {recentPosts && (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           {recentPosts.splice(0, 4).map((post: PostType, index: number) => (
             <RecentPost key={index} post={post} index={index} />
           ))}

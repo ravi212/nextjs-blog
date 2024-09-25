@@ -46,7 +46,7 @@ const Navrbar = ({ categories }: { categories: CategoryType[] }) => {
         />
 
         <Link
-          href={`https://ravi.rainaspace.com`}
+          href={`https://www.rainaspace.com`}
           target="_blank"
           className="flex items-center gap-2 hover:text-red-400 text-white"
         >
