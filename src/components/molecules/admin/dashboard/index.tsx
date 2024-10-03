@@ -2,6 +2,8 @@ import Card from '@/components/atoms/admin/dashboard/Card'
 import { Divider } from 'antd'
 import Link from 'next/link'
 import React from 'react'
+import Users from '../users'
+import Categories from '../categories'
 
 const Dashboard = ({posts, authors, categories}: {posts: PostType[], authors: UserType[], categories: CategoryType[]}) => {
 
@@ -24,15 +26,7 @@ const Dashboard = ({posts, authors, categories}: {posts: PostType[], authors: Us
                  <Link href={`/admin/user/list`} className={`font-base underline text-blue-500`}>View all</Link>
             </div>
                
-                <ul className='p-6'>
-
-                {
-                    authors.slice(0,3).map((author: UserType, index: number) => (
-                        <li className='p-1' key={index}>{`${author.firstName} ${author.lastName}`}</li>
-                    ))
-                }
-
-                </ul>
+               <Users users={authors} isAdminDashboard/>
 
             </div>}
 
@@ -42,16 +36,7 @@ const Dashboard = ({posts, authors, categories}: {posts: PostType[], authors: Us
                  <h2 className='text-lg text-gray-800 font-medium  '>Categories</h2>
                  <Link href={`/admin/category/list`} className={`font-base underline text-blue-500`}>View all</Link>
                 </div>
-                <ul className='p-6'>
-
-                {
-                    categories.slice(0,3).map((cat: CategoryType, index: number) => (
-                        <li className='p-1' key={index}>{cat.title}</li>
-                    ))
-                }
-
-                </ul>
-
+                <Categories categories={categories} isAdminDashboard/>
             </div>}
 
         </section>

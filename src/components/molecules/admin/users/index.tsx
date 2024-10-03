@@ -11,18 +11,21 @@ const Users = ({
   users,
   reGetUsers,
   openEditModal,
+  isAdminDashboard = false
 }: {
   users: any;
-  reGetUsers: () => void;
-  openEditModal: (id: string) => void;
+  reGetUsers?: () => void;
+  openEditModal?: (id: string) => void;
+  isAdminDashboard?: boolean;
+
 }) => {
 
   const handleLock = async (id: string) => {
     await toggleLocked(id)
-    reGetUsers();
+    reGetUsers?.();
   }
 
-  const columns: TableColumnsType<any> = [
+  const columns: TableColumnsType<any> = !isAdminDashboard ? [
     { title: "Name", dataIndex: "", key: "name",      
       render: (row) => (
       <div className="flex gap-4">
@@ -57,7 +60,7 @@ const Users = ({
       render: (row) => (
         <div className="flex gap-4">
           <button
-            onClick={() => openEditModal(row._id)}
+            onClick={() => openEditModal?.(row._id)}
             className="border rounded-md px-3 py-1 cursor-pointer shadow-md hover:text-black"
           >
             edit
@@ -65,7 +68,20 @@ const Users = ({
         </div>
       ),
     },
+  ]
+  
+  :
+  
+  [
+    { title: "Name", dataIndex: "", key: "name",      
+      render: (row) => (
+      <div className="flex gap-4">
+        <p>{`${row.firstName} ${row.lastName}`}</p>
+      </div>
+    ) },
+    { title: "Email", dataIndex: "email", key: "email" },
   ];
+  ;
 
   return (
     <Table

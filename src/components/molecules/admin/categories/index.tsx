@@ -17,22 +17,24 @@ const Categories = ({
   categories,
   reGetCategories,
   openEditModal,
+  isAdminDashboard = false
 }: {
   categories: any;
-  reGetCategories: () => void;
-  openEditModal: (id: string) => void;
+  reGetCategories?: () => void;
+  openEditModal?: (id: string) => void;
+  isAdminDashboard?: boolean
 }) => {
   const handleDelete = async (id: string) => {
     await deleteCategory(id);
-    reGetCategories();
+    reGetCategories?.();
   };
 
   const handleActive = async (id: string) => {
     await toggleActive(id);
-    reGetCategories();
+    reGetCategories?.();
   }
 
-  const columns: TableColumnsType<DataType> = [
+  const columns: TableColumnsType<DataType> = !isAdminDashboard ? [
     { title: "Title", dataIndex: "title", key: "title" },
     { title: "Slug", dataIndex: "slug", key: "slug" },
     {
@@ -61,7 +63,7 @@ const Categories = ({
       render: (row) => (
         <div className="flex gap-4">
           <button
-            onClick={() => openEditModal(row._id)}
+            onClick={() => openEditModal?.(row._id)}
             className="border rounded-md px-3 py-1 cursor-pointer shadow-md hover:text-black"
           >
             edit
@@ -80,7 +82,23 @@ const Categories = ({
         </div>
       ),
     },
-  ];
+  ]
+  :
+  [
+    { title: "Title", dataIndex: "title", key: "title" },
+    { title: "Slug", dataIndex: "slug", key: "slug" },
+    {
+      title: "Created On",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => (
+        <div className="flex gap-4">
+          <p>{formatDate(createdAt)}</p>
+        </div>
+      ),
+    },
+  ]
+  ;
 
   return (
     <Table
