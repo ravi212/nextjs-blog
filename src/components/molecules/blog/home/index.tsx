@@ -10,7 +10,7 @@ const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryTy
 
   const pinnedPost = posts.find((post: PostType) => post?.pinned);
   const featuredPosts = posts.filter(
-    (post: PostType) => post?.featured && !post?.pinned
+    (post: PostType) => post?.featured
   );
   
   const recentPosts = posts.sort(
@@ -33,7 +33,7 @@ const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryTy
       {/* featured posts */}
       <section className="pb-6">
       <Divider />
-      <h2 className="text-center text-lg text-gray-800 font-medium py-6">Featured Posts</h2>
+        <h2 className="text-center text-lg text-gray-800 font-medium py-6">Featured Posts</h2>
       <Divider />
       
       {featuredPosts && (
