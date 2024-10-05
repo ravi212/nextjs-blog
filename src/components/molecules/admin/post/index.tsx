@@ -71,9 +71,9 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
         if (res?.success) {
           setIsLoading(false);
           setPostSuccess("Post Updated SucccessFully!");
-          setTimeout(() => {
-            router.push(`/admin/post/list`);
-          }, 200)
+          // setTimeout(() => {
+          //   router.push(`/admin/post/list`);
+          // }, 200)
           
         } else {
           setIsLoading(false);
@@ -84,9 +84,9 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
         if (res?.success) {
           setIsLoading(false);
           setPostSuccess("Post Added SucccessFully!");
-          setTimeout(() => {
-            router.push(`/admin/post/list`);
-          }, 200)
+          // setTimeout(() => {
+          //   router.push(`/admin/post/list`);
+          // }, 200)
         } else {
           setIsLoading(false);
           setPostError(res?.error);
