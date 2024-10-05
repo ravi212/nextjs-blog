@@ -1,5 +1,6 @@
 import Posts from '@/components/molecules/admin/posts'
 import { getAllPosts } from '@/lib/actions/post.action'
+import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,6 +10,8 @@ const Page = async () => {
     if (result?.success) {
       posts = result?.posts;
     }
+
+    revalidatePath(`/(admin)/admin/post/list`, 'page');
 
   return (
     <div>

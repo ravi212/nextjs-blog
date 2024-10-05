@@ -3,7 +3,6 @@ import UserEdit from '@/components/molecules/admin/user'
 import Users from '@/components/molecules/admin/users'
 import { getAllUsers } from '@/lib/actions/user.action'
 import { Modal } from 'antd'
-import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 
 const Page = () => {

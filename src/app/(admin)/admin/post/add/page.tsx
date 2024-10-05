@@ -3,6 +3,7 @@ import { UserRole } from '@/enum/enum';
 import { getAllCategories } from '@/lib/actions/category.action';
 import { getUsersByRole } from '@/lib/actions/user.action';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { revalidatePath } from 'next/cache';
 import Link from 'next/link'
 import React from 'react'
 
@@ -13,6 +14,8 @@ const Page = async () => {
   
   const usersResponse: any = await getUsersByRole(UserRole.AUTHOR);
   const authors = usersResponse?.users;
+
+  revalidatePath(`/(admin)/admin/post/add`, 'page');
 
   return (
     <div className='px-10 '>
