@@ -137,6 +137,7 @@ body * {
       line-height: 2.125rem; /* 28px */
     }
     padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
   }
 
   h3 {
@@ -147,6 +148,7 @@ body * {
       line-height: 1.75rem; /* 28px */
     }
     padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
   }
 
   h4 {
@@ -157,6 +159,7 @@ body * {
       line-height: 1.75rem; /* 28px */
     }
     padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
   }
 
   h1 {
@@ -214,7 +217,7 @@ body * {
     line-height: 1.5rem; /* 24px */
     list-style: disc !important;
     padding-left: 2.5rem;
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     ::marker{
       color: black;
     }
@@ -228,7 +231,7 @@ body * {
     line-height: 1.5rem; /* 24px */
     list-style: numeric !important;
     padding-left: 2.5rem;
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     ::marker{
       color: black;
       font-weight: bold;
