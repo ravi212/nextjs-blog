@@ -36,3 +36,23 @@ export function formatDate(dateString: any) {
 
   return `${day} ${monthName} ${year}`;
 }
+
+export function updateLinksTarget(htmlString) {
+  // Create a new DOM parser
+  const parser = new DOMParser();
+  
+  // Parse the HTML string
+  const doc = parser.parseFromString(htmlString, 'text/html');
+  
+  // Select all <a> tags
+  const links = doc.querySelectorAll('a');
+  
+  // Update each <a> tag to have target="_blank"
+  links.forEach(link => {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer'); // For security reasons
+  });
+  
+  // Return the updated HTML string
+  return doc.body.innerHTML;
+}

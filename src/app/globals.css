@@ -93,6 +93,10 @@ body * {
 
 
 .article-container {
+  a {
+    text-decoration: underline;
+    color: rgb(0, 108, 197);
+  }
   img {
     padding: .75rem 0px
   }

@@ -1,12 +1,8 @@
-import { getPostBySlug } from "@/lib/actions/post.action";
-import { formatDate } from "@/utils/common";
+import { formatDate, updateLinksTarget} from "@/utils/common";
 import Head from "next/head";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PortraitIcon from "@mui/icons-material/Portrait";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
-import { JSDOM } from "jsdom";
-import DOMPurify from "dompurify";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
 
 const Post = async ({ post }: { post: PostType }) => {
@@ -14,9 +10,6 @@ const Post = async ({ post }: { post: PostType }) => {
   if (!post) {
     return <div>Post not found</div>;
   }
-
-  const window = new JSDOM("").window;
-  const DOMPurifyServer = DOMPurify(window);
 
   const rawHTML = post.htmlContent?.replace(/&lt;/g, "<").replace(/&gt;/g, ">") ;
 
@@ -70,7 +63,7 @@ const Post = async ({ post }: { post: PostType }) => {
         {/* Post content */}
         <article
           dangerouslySetInnerHTML={{
-            __html: DOMPurifyServer.sanitize(rawHTML),
+            __html: rawHTML,
           }}
           className="text-gray-800 md:py-6 md:px-6 py-4 px-4 content article-container"
         ></article>

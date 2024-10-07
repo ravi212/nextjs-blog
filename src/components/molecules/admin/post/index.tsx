@@ -1,6 +1,6 @@
 "use client";
 import { createPost, editPost, getPostById } from "@/lib/actions/post.action";
-import { generateSlug, htmlToPlainText } from "@/utils/common";
+import { generateSlug, htmlToPlainText, updateLinksTarget } from "@/utils/common";
 import { Input, Select } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
@@ -144,11 +144,11 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
   };
 
   const handleEditorChange = (html, delta) => {
-    formik.setFieldValue("htmlContent", html);
+    const htmlContent = updateLinksTarget(html)
+    formik.setFieldValue("htmlContent", htmlContent);
     const plainText = htmlToPlainText(html).substring(0, 300);
     formik.setFieldValue("textContent", plainText);
   }
-
 
   return (
     <form onSubmit={formik.handleSubmit} className="h-full gap-4 flex flex-col">
