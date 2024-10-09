@@ -218,7 +218,7 @@ export const getPostByCategory = async (category: string | undefined, postId: st
 
         const posts = await Post.find({
             $and: [
-                // { _id: { $ne: postId } },
+                { _id: { $ne: postId } },
                 { category }
             ]
         }).sort({updatedAt: -1}).limit(5).populate('category');
