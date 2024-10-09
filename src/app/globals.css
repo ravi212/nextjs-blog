@@ -141,7 +141,7 @@ body * {
       line-height: 2.125rem; /* 28px */
     }
     padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
+    padding-top: 0.5rem;
   }
 
   h3 {
@@ -151,8 +151,8 @@ body * {
       font-size: 1.25rem; /* 18px */
       line-height: 1.75rem; /* 28px */
     }
-    padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
   }
 
   h4 {
@@ -163,7 +163,7 @@ body * {
       line-height: 1.75rem; /* 28px */
     }
     padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
+    padding-top: 0.5rem;
   }
 
   h1 {
@@ -235,10 +235,11 @@ body * {
     line-height: 1.5rem; /* 24px */
     list-style: numeric !important;
     padding-left: 2.5rem;
+    
     /* padding-bottom: 1rem; */
     ::marker{
       color: black;
-      font-weight: bold;
+      /* font-weight: bold; */
     }
     li{
       padding-bottom: 0.50rem;

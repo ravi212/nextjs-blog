@@ -211,6 +211,31 @@ export const getPostById = async (_id: string | undefined) => {
 
 }
 
+//Get by category
+export const getPostByCategory = async (category: string | undefined, postId: string | undefined) => {
+
+    try {
+
+        const posts = await Post.find({
+            $and: [
+                // { _id: { $ne: postId } },
+                { category }
+            ]
+        }).sort({updatedAt: -1}).limit(5).populate('category');
+
+        if (posts) {
+            return JSON.parse(JSON.stringify({success: 'ok', posts}))
+        } 
+    
+        return {error: "Not Found!"}
+
+    } catch (err) {
+        return {error: "Server Error!", err}
+    }
+
+}
+
+
 
 // get post by slug
 export const getPostBySlug = async (slug: string) => {

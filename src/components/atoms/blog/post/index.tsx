@@ -25,7 +25,7 @@ const BlogPost = ({
       className="bg-white rounded-lg drop-shadow-2xl flex flex-col cursor-pointer "
     >
       <div
-        className={`relative w-full md:min-h-[300px] min-h-[400px] overflow-hidden rounded-t-xl shadow-xl col-span-2 md:col-span-1 cursor-pointer`}
+        className={`relative w-full md:min-h-[400px] min-h-[500px] overflow-hidden rounded-t-xl shadow-xl col-span-2 md:col-span-1 cursor-pointer`}
       >
         {/* overlay with opacity */}
         <div className="w-full h-full absolute bg-opacity-50 z-10 inset-0 bg-gradient-to-t from-black "></div>
@@ -84,7 +84,7 @@ const BlogPost = ({
               ))}
           </div>
 
-          <div className="flex flex-nowrap items-center gap-1 md:py-0 py-3">
+          <div className="flex flex-nowrap items-end gap-1 md:py-0 py-3">
             <CalendarMonthIcon className="w-6 h-6 text-gray-400" />
             <p className="text-gray-600 text-sm text-nowrap">{date}</p>
           </div>
