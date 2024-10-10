@@ -5,6 +5,9 @@ const nextConfig = {
         serverActions: {
             bodySizeLimit: '3mb'
         }
+    },
+    images: {
+        domains: ['blog.rainaspace.com']
     }
 };
 

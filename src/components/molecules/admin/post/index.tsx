@@ -353,7 +353,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
 
       {formik.values.imageUrl && (
         <div className="relative w-[100%] md:w-[100%] h-[auto] overflow-hidden">
-          <Image
+          <img
             width={900}
             height={900}
             src={formik.values.imageUrl}
