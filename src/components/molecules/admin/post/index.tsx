@@ -6,7 +6,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Spinner from "@/components/atoms/common/Spinner";
-import { upload } from "@/lib/actions/common.action";
+import { upload, uploadAsBase64 } from "@/lib/actions/common.action";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Editor from "@/components/atoms/admin/editor";
@@ -117,10 +117,10 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await upload(formData);
-
+      const response = await uploadAsBase64(formData);
+      console.log(response)
       if (response.success) {
-        formik.setFieldValue("imageUrl", response?.imageUrl);
+        formik.setFieldValue("imageUrl", response?.image);
         setImageSuccess("Image Uploaded SuccessFully!");
       } else {
         setImageError("Error Uploading Image!");

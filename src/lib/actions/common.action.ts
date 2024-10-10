@@ -34,3 +34,19 @@ export async function upload(data: FormData) {
     }
 
   }
+
+  export const uploadAsBase64 = async (data: FormData) => {
+    try {
+        const file: File | null = data.get('file') as unknown as File;
+        const arrayBuffer = await file.arrayBuffer();
+        const base64String = Buffer.from(arrayBuffer).toString('base64');
+        if (!base64String) {
+            return {error: 'Unable to upload file'}
+        }
+        return {success: 'ok', image: `data:image/png;base64,${base64String}`};
+    } catch (e) {
+        console.log(e)
+        throw new Error("Unable to upload file");
+    }
+
+  }
