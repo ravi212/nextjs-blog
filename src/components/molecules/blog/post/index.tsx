@@ -78,17 +78,17 @@ const Post = async ({ post }: { post: PostType }) => {
           <div className="py-7 my-5 mx-auto w-11/12 text-gray-800 md:py-6 md:px-6 px-4 content article-container border-t">
 
             <h2 className="text-xl font-medium">Related Posts</h2>
-            <div className="py-5">
+            <div className="py-5 flex flex-col gap-2">
               {relatedPosts.map((item: any) => (
                 <Link
                   key={item._id}
-                  className="hover:text-blue-800 hover:scale-105"
+                  className="hover:text-blue-900 text-lg"
                   target="_blank"
                   href={{
                     pathname: `/category/${item?.category?.slug}/${item?.slug}`,
                   }}
                 >
-                  {post.title}
+                  {item.title}
                 </Link>
               ))}
             </div>
