@@ -48,6 +48,11 @@ const PostSchema = new Schema(
       type: Boolean,
       default: false
     },
+    relatedPosts: {
+      type: [mongoose.SchemaTypes.ObjectId],
+      ref: "Post",
+      required: true,
+    },
     category: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Category",

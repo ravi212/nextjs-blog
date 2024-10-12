@@ -1,6 +1,7 @@
 import PostEdit from '@/components/molecules/admin/post'
 import { UserRole } from '@/enum/enum';
 import { getAllCategories } from '@/lib/actions/category.action';
+import { getAllPosts } from '@/lib/actions/post.action';
 import { getUsersByRole } from '@/lib/actions/user.action';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { revalidatePath } from 'next/cache';

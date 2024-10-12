@@ -10,7 +10,9 @@ type PostType = {
     pinned: boolean;
     tags: string[];
     author: any;
+    inActive?: boolean;
     category?: any;
+    relatedPosts?: any;
     createdAt?: any;
     updatedAt?: any;
 }

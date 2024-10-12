@@ -12,8 +12,6 @@ const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => 
 
   return (
     <div className='flex flex-col gap-6 w-full'>
-      {
-        posts && posts.length > 0 ?
         <>
         {posts.map(post => (
         <BlogPost
@@ -37,18 +35,6 @@ const Posts = ({posts, totalCount}: {posts: PostType[], totalCount: number}) => 
           <PostsPagination totalCount={totalCount} />
         </div>
         </>
-
-        :
-        <div className='w-full flex flex-col justify-center items-center py-10'>
-          <Empty />
-          <h3 className='text-gray-800 text-center text-2xl font-medium'>
-            <p>The list is empty</p>
-            <p className='text-xl py-4'> You can always explore other posts</p>
-            <Link className='text-blue-500 font-normal underline text-base' href={`/category/all`}>click here</Link>
-          </h3>
-        </div>
-        
-      }
     </div>
   )
 }

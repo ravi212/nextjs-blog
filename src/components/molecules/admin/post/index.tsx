@@ -1,5 +1,5 @@
 "use client";
-import { createPost, editPost, getPostById } from "@/lib/actions/post.action";
+import { createPost, editPost, getPostByCategory } from "@/lib/actions/post.action";
 import { generateSlug, htmlToPlainText, updateLinksTarget } from "@/utils/common";
 import { Input, Select } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
@@ -35,6 +35,10 @@ const validationSchema = Yup.object({
   imageUrl: Yup.string().required("Image is required"),
   category: Yup.string().required("Category is required"),
   tags: Yup.array().of(Yup.string()).required("Tags are required"),
+  relatedPosts: Yup.array()
+  .of(Yup.string()) 
+  .min(0) 
+  .max(10)
 });
 
 const PostEdit = ({ post, categories, authors }: { post?: any; categories: CategoryType[], authors: UserType[] }) => {
@@ -43,8 +47,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
   const [imageSuccess, setImageSuccess] = useState("");
   const [postError, setPostError] = useState("");
   const [postSuccess, setPostSuccess] = useState("");
-  const router= useRouter();
-
+  const [allPosts, setAllPosts] = useState<any>([])
   // Initialize Formik with useFormik hook
   const formik = useFormik({
     initialValues: {
@@ -59,6 +62,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
       category: '',
       tags: [],
       author: '',
+      relatedPosts: [],
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -95,10 +99,17 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
     },
   });
 
-  //generate slug
+  //get All posts based on  category selection
+  const getAllPostsByCategory = async (categoryId: string, postId: any = null) => {
+    const posts = (await getPostByCategory(categoryId, postId))?.posts;
+    setAllPosts(posts)
+  }
+
+  //generate slug and fetch allPosts
   useEffect(() => {
     const title = formik.values.title;
     formik.setFieldValue("slug", generateSlug(title));
+    getAllPostsByCategory(formik?.values?.category, post?._id);
   }, [formik.values]);
 
   useEffect(() => {
@@ -118,7 +129,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
       const formData = new FormData();
       formData.append("file", file);
       const response = await uploadAsBase64(formData);
-      console.log(response)
+
       if (response.success) {
         formik.setFieldValue("imageUrl", response?.image);
         setImageSuccess("Image Uploaded SuccessFully!");
@@ -131,6 +142,11 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
   // Handle change of tags select
   const handleSelectChange = (value) => {
     formik.setFieldValue("tags", value);
+  };
+
+  // Handle change of tags select
+  const handleRelatedPostsChange = (value) => {
+    formik.setFieldValue("relatedPosts", value);
   };
 
   // Handle change of Select component
@@ -299,6 +315,34 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
       </div>
 
       <div className="flex flex-col gap-2">
+        <label className="text-lg font-normal" htmlFor="relatedPosts">
+          Related Posts
+        </label>
+
+        <Select
+          id="relatedPosts"
+          mode="tags"
+          placeholder="Add Related Posts"
+          value={formik.values.relatedPosts}
+          onChange={handleRelatedPostsChange}
+          onBlur={formik.handleBlur}
+          size="large"
+        >
+          {allPosts?.map((item, index) => (
+            <Option key={index} value={item?._id}>
+              {item?.title}
+            </Option>
+          ))}
+        </Select>
+
+        {formik.touched.relatedPosts && formik.errors.relatedPosts ? (
+          <p className="text-red-500 text-base font-normal">
+            {formik.errors.relatedPosts}
+          </p>
+        ) : null}
+      </div>
+
+      <div className="flex flex-col gap-2">
         <label className="text-lg font-normal" htmlFor="content">
           Content
         </label>
@@ -353,7 +397,7 @@ const PostEdit = ({ post, categories, authors }: { post?: any; categories: Categ
 
       {formik.values.imageUrl && (
         <div className="relative w-[100%] md:w-[100%] h-[auto] overflow-hidden">
-          <img
+          <Image
             width={900}
             height={900}
             src={formik.values.imageUrl}
