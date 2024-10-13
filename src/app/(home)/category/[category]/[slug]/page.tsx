@@ -1,4 +1,5 @@
 import Empty from "@/components/atoms/common/Empty";
+import Loading from "@/components/atoms/common/Loading";
 import { siteMetaData } from "@/constants/siteMetaData";
 import { getAllCategories } from "@/lib/actions/category.action";
 import { getPostBySlug } from "@/lib/actions/post.action";
@@ -75,11 +76,11 @@ const Page = async ({
 
   return (
     <div className="flex flex-row gap-6 w-full mx-auto md:w-[100%] min-h-screen">
-      <div className="w-[100%] mx-auto mb-4">
-        <Post post={post} />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="w-[100%] mx-auto mb-4">
+          <Post post={post} />
+        </div>
 
-      <Suspense>
         <Aside categories={categories} />
       </Suspense>
     </div>

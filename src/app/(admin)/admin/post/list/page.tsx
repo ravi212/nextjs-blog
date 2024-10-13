@@ -1,8 +1,10 @@
-import Posts from '@/components/molecules/admin/posts'
+import Loading from '@/components/atoms/common/Loading'
+import dynamic from 'next/dynamic'
+const Posts = dynamic(() => import('@/components/molecules/admin/posts'));
 import { getAllPosts } from '@/lib/actions/post.action'
 import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const Page = async () => {
     const result: any = await getAllPosts(true);
@@ -21,7 +23,10 @@ const Page = async () => {
             Add New
         </Link>
       </div>
-      <Posts initialPosts={posts} />
+      <Suspense fallback={<Loading/>}>
+        <Posts initialPosts={posts} />
+      </Suspense>
+      
     </div>
   )
 }
