@@ -93,7 +93,7 @@ export const getCategoryBySlug = async (slug: string) => {
     
     try {
 
-        const category = await Category.findOne({slug})
+        const category = await Category.findOne({slug}, "_id title")
 
         if (category) {
             return JSON.parse(JSON.stringify({success: 'ok', category}))
