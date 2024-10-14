@@ -16,7 +16,7 @@ export const generateMetadata = async ({ params }) => {
   params.category ? 
   params.category == 'all' ? params.category.charAt(0).toUpperCase() + params.category.slice(1) : category?.title
   : ''
-  console.log(title)
+
   return {
     title,
     openGraph: {
