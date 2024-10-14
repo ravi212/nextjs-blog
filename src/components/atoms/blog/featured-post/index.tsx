@@ -31,7 +31,7 @@ const FeaturedPost = ({ post, index }: { post: PostType; index: number }) => {
         </div> */}
 
         {/* title and author */}
-        <div className="z-20 flex flex-col  w-4/5 sm:w-3/4 py-3 absolute bottom-0 left-5">
+        <div className="z-20 flex flex-col  w-4/5 sm:w-3/4 py-5 absolute bottom-0 left-5">
           <div className="text-white py-4 text-xs font-normal items-center ">
             <span className="bg-gray-800 border border-gray-500 p-2 rounded-md">
               <TypeSpecimen className="w-4 h-4 text-white" />{" "}
