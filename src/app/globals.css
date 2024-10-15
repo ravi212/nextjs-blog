@@ -96,6 +96,7 @@ body * {
   a {
     text-decoration: underline;
     color: rgb(0, 108, 197);
+    word-wrap: break-word;
   }
   img {
     padding: .75rem 0px
@@ -107,10 +108,12 @@ body * {
     background: #f9f9f9; /* or another background color */
     font-style:italic; /* Optional */
     font-size: 1rem !important;
+    word-wrap: break-word;
   }
 
   pre {
     text-wrap: wrap;
+    word-wrap: break-word;
     background-color:#000a1d;
     padding: .75rem;
     color: white;
@@ -139,9 +142,11 @@ body * {
     strong {
       font-size: 1.50rem; /* 20px */
       line-height: 2.125rem; /* 28px */
+      word-wrap: break-word;
     }
     padding-bottom: 0.25rem;
     padding-top: 0.5rem;
+    word-wrap: break-word;
   }
 
   h3 {
@@ -150,9 +155,11 @@ body * {
     strong {
       font-size: 1.25rem; /* 18px */
       line-height: 1.75rem; /* 28px */
+      word-wrap: break-word;
     }
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+    word-wrap: break-word;
   }
 
   h4 {
@@ -161,9 +168,11 @@ body * {
     strong {
       font-size: 1.10rem; /* 18px */
       line-height: 1.75rem; /* 28px */
+      word-wrap: break-word;
     }
     padding-bottom: 0.25rem;
     padding-top: 0.5rem;
+    word-wrap: break-word;
   }
 
   h1 {
@@ -171,10 +180,13 @@ body * {
     padding-bottom: .5rem;
     font-size: 1.75rem;
     line-height: 2.50rem;
+    word-wrap: break-word;
     strong {
       font-size: 1.75rem;
       line-height: 2.50rem;
+      word-wrap: break-word;
       span {
+        word-wrap: break-word;
         font-size: 1.75rem;
         line-height: 2.50rem;
       }
@@ -182,8 +194,10 @@ body * {
     span {
       font-size: 1.75rem;
       line-height: 2.50rem;
+      word-wrap: break-word;
     }
     padding-bottom: 0.50rem;
+    word-wrap: break-word;
   }
 
   .ql-size-small {
@@ -208,8 +222,10 @@ body * {
     font-size: 1rem; /* 16px */
     line-height: 1.5rem; /* 24px */
     padding-bottom: 0.50rem;
+    word-wrap: break-word;
     a {
       text-decoration: underline;
+      word-wrap: break-word;
     }
     a:hover{
         color: rgb(2, 132, 199, 1) !important;
@@ -221,11 +237,13 @@ body * {
     line-height: 1.5rem; /* 24px */
     list-style: disc !important;
     padding-left: 2.5rem;
+    word-wrap: break-word;
     /* padding-bottom: 1rem; */
     ::marker{
       color: black;
     }
     li{
+      word-wrap: break-word;
       padding-bottom: 0.25rem;
     }
   }
@@ -235,13 +253,14 @@ body * {
     line-height: 1.5rem; /* 24px */
     list-style: numeric !important;
     padding-left: 2.5rem;
-    
+    word-wrap: break-word;
     /* padding-bottom: 1rem; */
     ::marker{
       color: black;
       /* font-weight: bold; */
     }
     li{
+      word-wrap: break-word;
       padding-bottom: 0.50rem;
     }
   }
