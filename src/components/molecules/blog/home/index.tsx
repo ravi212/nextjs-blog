@@ -15,7 +15,7 @@ const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryTy
   
   const recentPosts = posts.sort(
     // @ts-ignore
-    (a, b) => new Date(a.updatedAt) - new Date(a.updatedAt)
+    (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
   );
 
   return (

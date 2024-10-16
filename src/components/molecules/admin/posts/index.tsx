@@ -51,7 +51,11 @@ const Posts = ({initialPosts}: {initialPosts: any}) => {
 
   const columns: TableColumnsType<DataType> = [
     { title: 'Title', dataIndex: 'title', key: 'title' },
-    { title: 'Slug', dataIndex: 'slug', key: 'slug' },
+    { title: 'Category', dataIndex: 'category', key: 'category', 
+      render: (category) => <div className='flex gap-4'>
+      <p>{category?.title}</p> 
+    </div>,
+     },
     { title: 'Created On', dataIndex: 'createdAt', key: 'createdAt',
       render: (createdAt) => <div className='flex gap-4'>
       <p>{formatDate(createdAt) }</p> 

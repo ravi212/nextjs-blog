@@ -87,6 +87,7 @@ export const getAllPosts = async (
     )
       .populate("author")
       .populate("category")
+      .sort({updatedAt: -1})
       .skip(skip)
       .limit(itemsPerPage)
       .exec();
