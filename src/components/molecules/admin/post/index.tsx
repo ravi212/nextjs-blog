@@ -6,7 +6,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Spinner from "@/components/atoms/common/Spinner";
-import { upload, uploadAsBase64 } from "@/lib/actions/common.action";
+import { uploadAsBase64 } from "@/lib/actions/common.action";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Editor from "@/components/atoms/admin/editor";
