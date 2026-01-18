@@ -1,7 +1,8 @@
 import Home from "@/components/molecules/blog/home";
 import { getAllCategories } from "@/lib/actions/category.action";
 import { getAllPosts } from "@/lib/actions/post.action";
-import { revalidatePath } from "next/cache";
+
+export const revalidate = 15 * 60;
 
 const Page = async () => {
 
@@ -10,8 +11,6 @@ const Page = async () => {
 
   const res: any = await getAllCategories();
   const categories = res?.categories;
-
-  revalidatePath('/(home)', 'page');
 
   if (!posts) {
     return

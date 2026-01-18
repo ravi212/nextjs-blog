@@ -4,7 +4,6 @@ import Posts from "@/components/molecules/blog/posts";
 import { siteMetaData } from "@/constants/siteMetaData";
 import { getAllCategories, getCategoryBySlug } from "@/lib/actions/category.action";
 import { getAllPosts } from "@/lib/actions/post.action";
-import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -27,6 +26,8 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+export const revalidate = 15 * 60;
+
 const Page = async ({
   params,
   searchParams,
@@ -47,8 +48,6 @@ const Page = async ({
 
   const res: any = await getAllCategories();
   const categories = res?.categories;
-
-  revalidatePath(`/(home)/category/[category]`, "page");
 
   if (!posts || posts?.length == 0) {
     return (

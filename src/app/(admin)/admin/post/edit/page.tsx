@@ -1,18 +1,15 @@
 import PostEdit from '@/components/molecules/admin/post'
 import { UserRole } from '@/enum/enum';
 import { getAllCategories } from '@/lib/actions/category.action';
-import { getAllPosts, getPostById } from '@/lib/actions/post.action';
+import { getPostById } from '@/lib/actions/post.action';
 import { getUsersByRole } from '@/lib/actions/user.action';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
 import React from 'react'
 
 const Page = async ({
-  params,
   searchParams,
 }: {
-  params: { slug: string };
   searchParams?: { [key: string]: string  | undefined };
 }) => {
 
@@ -25,8 +22,6 @@ const Page = async ({
   const postId = searchParams?.id;
   const postResponse = await getPostById(postId);
   const post = JSON.parse(JSON.stringify(postResponse?.post));
-
-  revalidatePath(`/(admin)/admin/post/edit`, 'page');
 
   return (
     <div className='px-10 '>

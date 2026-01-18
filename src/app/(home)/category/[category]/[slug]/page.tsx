@@ -3,7 +3,6 @@ import Loading from "@/components/atoms/common/Loading";
 import { siteMetaData } from "@/constants/siteMetaData";
 import { getAllCategories } from "@/lib/actions/category.action";
 import { getPostBySlug } from "@/lib/actions/post.action";
-import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import React, { lazy, Suspense } from "react";
 const Post = lazy(() => import("@/components/molecules/blog/post"));
@@ -41,20 +40,18 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+export const revalidate = 15 * 60;
+
 const Page = async ({
   params,
-  searchParams,
 }: {
   params: { slug: string; category: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const res: any = await getAllCategories();
   const categories = res?.categories;
 
   const data = await getPostBySlug(params?.slug);
   const post: PostType | any = data?.post;
-
-  revalidatePath(`/(home)/category/[category]/[slug]`, "page");
 
   if (!post || post.inActive) {
     return (
