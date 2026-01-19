@@ -7,6 +7,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
 import React from 'react'
 
+export const dynamic = "force-dynamic";
+
 const Page = async ({
   searchParams,
 }: {
