@@ -6,13 +6,14 @@ import Image from "next/image";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
 import Link from "next/link";
 
+
 const Post = async ({ post }: { post: PostType }) => {
   if (!post) {
     return <div>Post not found</div>;
   }
-
-  const rawHTML = post.htmlContent?.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-
+  // const rawPost = post.htmlContent?.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const rawHTML = post.htmlContent?.split(/<pre><code>|<\/code><\/pre>/);
+  
   return (
     <div className="w-full">
       <Head>
