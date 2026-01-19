@@ -1,6 +1,5 @@
 import Loading from "@/components/atoms/common/Loading";
-import dynamic from "next/dynamic";
-const Posts = dynamic(() => import("@/components/molecules/admin/posts"));
+import Posts from "@/components/molecules/admin/posts";
 import { getAllPosts } from "@/lib/actions/post.action";
 import Link from "next/link";
 import React, { Suspense } from "react";
