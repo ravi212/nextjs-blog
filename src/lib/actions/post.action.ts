@@ -61,11 +61,11 @@ export const getAllPosts = async (
   let pageSize = 10;
 
   if (query) {
-    page = query?.page;
-    pageSize = query?.pageSize;
+    page = Number(query.page) || 1;  
+    pageSize = Number(query.pageSize) || 10; 
   }
 
-  const skip = (page - 1) * pageSize;
+  const skip = Math.max(0, (page - 1) * pageSize);
   const itemsPerPage = pageSize;
 
   try {
