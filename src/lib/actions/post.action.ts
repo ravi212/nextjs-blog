@@ -4,6 +4,7 @@ import connectToDatabase from "@/config/db";
 import Category from "@/models/category.model";
 import Post from "@/models/post.model";
 import "@/models/user.model";
+import { revalidatePath } from "next/cache";
 
 // Create post
 export const createPost = async (payload: PostType) => {
@@ -110,6 +111,9 @@ export const getAllPosts = async (
     const totalCount = await Post.countDocuments();
 
     if (posts) {
+      if(isAdmin){
+        revalidatePath('(admin)/admin/post/list');
+      }
       return JSON.parse(JSON.stringify({ success: "ok", posts, totalCount }));
     }
 
