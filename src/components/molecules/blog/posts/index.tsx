@@ -1,9 +1,7 @@
 
 // import PostsPagination from '@/components/atoms/blog/pagination'
-import Empty from '@/components/atoms/common/Empty'
 import { formatDate } from '@/utils/common'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import React, { lazy } from 'react'
 const BlogPost = lazy(() => import('@/components/atoms/blog/post'))
 const PostsPagination = dynamic(() => import('@/components/atoms/blog/pagination'), {ssr: false})

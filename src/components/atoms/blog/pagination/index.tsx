@@ -1,6 +1,6 @@
 "use client"
 import { Pagination } from 'antd'
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const PostsPagination = ({totalCount} : {totalCount: number}) => {

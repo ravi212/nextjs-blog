@@ -52,6 +52,55 @@ export const editPost = async (id: string | undefined, payload: PostType) => {
   }
 };
 
+// get posts for home page
+export const getHomePosts = async () => {
+  try {
+    await connectToDatabase();
+
+    const baseFilter = { inActive: false };
+
+    const pinnedPost = await Post.findOne({
+      ...baseFilter,
+      pinned: true,
+    })
+      .populate("category")
+      .populate("author")
+      .sort({ updatedAt: -1 });
+
+    const featuredPosts = await Post.find({
+      ...baseFilter,
+      featured: true,
+      pinned: false,
+    })
+      .populate("category")
+      .populate("author")
+      .sort({ updatedAt: -1 });
+
+
+    const recentPosts = await Post.find({
+      ...baseFilter,
+      pinned: false,
+      featured: false,
+    })
+      .populate("category")
+      .populate("author")
+      .sort({ updatedAt: -1 })
+      .limit(4);
+
+    return JSON.parse(
+      JSON.stringify({
+        success: "ok",
+        pinnedPost,
+        featuredPosts,
+        recentPosts,
+      })
+    );
+  } catch (err) {
+    return { error: "Server Error!", err };
+  }
+};
+
+
 // get list of posts
 export const getAllPosts = async (
   isAdmin: boolean,
