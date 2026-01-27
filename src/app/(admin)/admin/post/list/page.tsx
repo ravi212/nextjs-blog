@@ -4,12 +4,23 @@ import { getAllPosts } from "@/lib/actions/post.action";
 import Link from "next/link";
 import React, { Suspense } from "react";
 
-const Page = async () => {
-  const result: any = await getAllPosts(true);
-  let posts!: PostType;
-  if (result?.success) {
-    posts = result?.posts;
-  }
+export const dynamic = "force-dynamic";
+
+const Page = async ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined | any };
+}) => {
+
+  const queryParams = {
+    page: searchParams?.page,
+    pageSize: searchParams?.pageSize,
+    category: searchParams?.category
+  };
+  const data = await getAllPosts(false, queryParams?.category, queryParams);
+
+  const posts: any = data?.posts;
+  const totalCount: number = data?.totalCount;
 
   return (
     <div>
@@ -23,7 +34,7 @@ const Page = async () => {
         </Link>
       </div>
       <Suspense fallback={<Loading />}>
-        <Posts initialPosts={posts} />
+        <Posts initialPosts={posts} totalCount={totalCount}/>
       </Suspense>
     </div>
   );

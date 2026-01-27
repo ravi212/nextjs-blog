@@ -6,17 +6,18 @@ import { Divider } from "antd";
 import RecentPost from "@/components/atoms/blog/recent-post";
 import CategoryList from "@/components/atoms/blog/category-list";
 
-const Home = ({ posts, categories }: { posts: PostType[], categories: CategoryType[] }) => {
+interface PostDataType {
+          pinnedPost: PostType,
+        featuredPosts: PostType[],
+        recentPosts: PostType[],
+}
 
-  const pinnedPost = posts.find((post: PostType) => post?.pinned);
-  const featuredPosts = posts.filter(
-    (post: PostType) => post?.featured
-  );
+const Home = ({ postsData, categories }: { postsData: PostDataType, categories: CategoryType[] }) => {
+
+  const pinnedPost = postsData?.pinnedPost;
+  const featuredPosts = postsData?.featuredPosts;
   
-  const recentPosts = posts.sort(
-    // @ts-ignore
-    (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
-  );
+  const recentPosts = postsData?.recentPosts;
 
   return (
     <div>
