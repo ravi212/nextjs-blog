@@ -157,7 +157,7 @@ export const getAllPosts = async (
       });
     }
 
-    const totalCount = await Post.countDocuments();
+    const totalCount = await Post.countDocuments(filters);
 
     if (posts) {
       if(isAdmin){
